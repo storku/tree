@@ -1,0 +1,6 @@
+server
+  config - Protected API keys and settings
+  models - All the different Model Classes created by Mongoose
+  routes - All route handlers grouped by purpose
+  services - Helper modules and business logic
+  index.js - Helper modules and business logic
