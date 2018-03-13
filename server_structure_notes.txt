@@ -1,6 +1,16 @@
 server
+  client - Front-End based on Create React App
+    src -
+      components -
+        App.js - Rendering layer control (React Router)
+      reducers - Contains all the Redux Reducers
+        authReducer.js - Records whether or not the user is logged in
+        surveysReducer.js - Records a list of all surveys user has created
+      index.js - Data layer control (Redux)
+    tests -
   config - Protected API keys and settings
   models - All the different Model Classes created by Mongoose
   routes - All route handlers grouped by purpose
   services - Helper modules and business logic
+    passport.js -
   index.js - Helper modules and business logic

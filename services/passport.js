@@ -38,29 +38,25 @@ passport.use(
     },
     //called after profile and email information of the user is obtained from google
     //take identifying user information (profile) and save it to database
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       //check if user alrady exists in mongoosedb
       //look through users Collection, find the first record with googleId of profile.id
-      //any mongodb interaction is asynchronous
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        //existingUser is either an instance (found) or null (not found)
-        if (existingUser) {
-          //if existingUser is found / an instance
-          //we already have a record with a given profile ID
-          done(null, existingUser); //call done to proceed to the next auth step
-        } else {
-          //if existingUser is not found / null
-          //we don't have a user with this ID, make a new record
-          //creates a new instance of User
-          //it represents a record that exists or might exist in the users Collection
-          new User({ googleId: profile.id })
-            //.save() saves the record into the mongodb database
-            .save()
-            //because it is async, we need to call then before calling done
-            //call done then call in the newly created user to proceed
-            .then(user => done(null, user)); //user is a fresh copy straight from the database
-        }
-      });
+      //Note that any mongodb interaction is asynchronous
+      const existingUser = await User.findOne({ googleId: profile.id });
+      //existingUser is either an instance (found) or null (not found)
+      if (existingUser) {
+        //if existingUser is found / an instance
+        //we already have a record with a given profile ID
+        done(null, existingUser); //call done to proceed to the next auth step
+      } else {
+        //if existingUser is not found / null
+        //we don't have a user with this ID, make a new record
+        //creates a new instance of User
+        //it represents a record that exists or might exist in the users Collection
+        const user = await new User({ googleId: profile.id }).save(); //.save() saves the record into the mongodb database
+        //call done then call in the newly created user to proceed
+        done(null, user); //user is a fresh copy straight from the database
+      }
     }
   )
 );
