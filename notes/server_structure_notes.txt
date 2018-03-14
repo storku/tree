@@ -1,6 +1,7 @@
 server
   client - Front-End based on Create React App
     src -
+      actions - Contains all the Redux Action Creators
       components -
         App.js - Rendering layer control (React Router)
       reducers - Contains all the Redux Reducers
@@ -10,6 +11,7 @@ server
     tests -
   config - Protected API keys and settings
   models - All the different Model Classes created by Mongoose
+  notes - Additional information on various structures and subjects
   routes - All route handlers grouped by purpose
   services - Helper modules and business logic
     passport.js -

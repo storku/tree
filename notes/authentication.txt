@@ -1,0 +1,29 @@
+1. When React App boots up, App.js calls the Action Creator fetchUser
+  fetchUser is called by componentDidMount in App.js
+
+2. fetchUser makes an AJAX request to /api/current_user (backend api)
+  The request goes to the Express server and we get a response back
+  If the user is logged in, we get the user back
+  Then, we use Redux Thunk to dispatch an Action, containing rather or not
+    the user is logged in
+
+3. Action is sent to all the reducers including the authReducer.js
+
+4. authReducer.js looks at the action and
+  updates a value that specifies rather the user is signed in or not.
+  Those values update the state in redux store.
+    *If the request to the backend haven't gotten back:
+      then the reducer returns "null"
+    *When the request has completed and the user is logged in:
+      then the user model (object containing user id) is returned
+    *When the request has completed and the user is not logged in:
+      then the reducer returns "false"
+
+
+5. Redux store sends the state back to all the React components, causing them
+to re-render. Each component should communicate with the redux store.
+  In Header.js, it is decided by a switch statement in renderContent
+
+LOGOUT: Make a full HTTP Request
+  In Header.js, user hits /api/logout (authRoutes.js),
+  then redirect them to the root page

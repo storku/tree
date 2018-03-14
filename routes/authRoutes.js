@@ -17,17 +17,27 @@ module.exports = app => {
   //google sends the code for user to us
   //we send the code back to google to get the user's profile and email
   //then the callback function (arrow function / the 2nd arguement) in passport.use is executed
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  //after passport is done, we redirects it to another page with the 3rd parameter
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
+  );
 
   //log the user out
   app.get('/api/logout', (req, res) => {
     //kills the id in the cookie
     req.logout(); //logout() is automatically attached to req by passport
-    res.send(req.user); //proves that you are logged out
+    res.redirect('/'); //when the user is logged out, redirect them to root page
   });
 
   //check the current user object from the id from the cookie
+  //use this route handler to decide if the user is signed in or not
   app.get('/api/current_user', (req, res) => {
+    //if it response back with the user model then the user is logged in
+    //if it response back with undefined or null then the user is not logged in
     res.send(req.user);
   });
 };
