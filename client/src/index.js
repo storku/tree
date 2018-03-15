@@ -6,6 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 //redux thunk gives Action Creators manual access to dispatch function
 //allowing us to dispatch the action at any point in time, instead of instantly
 import reduxThunk from 'redux-thunk';
+//Semantic UI React CSS
+import 'semantic-ui-css/semantic.min.css';
 
 import App from './components/App';
 import reducers from './reducers'; //import the combineReducers for createStore
