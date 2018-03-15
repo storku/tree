@@ -1,5 +1,6 @@
 server
   client - Front-End based on Create React App
+    old - Old files that might be useful
     src -
       actions - Contains all the Redux Action Creators
       components -

@@ -11,6 +11,7 @@ import * as actions from '../actions'; //import all the action creators
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import FrontPage from './FrontPage';
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route exact path="/surveys/new" component={SurveyNew} />
+            <Route exact path="/frontpage" component={FrontPage} />
           </div>
         </BrowserRouter>
       </div>

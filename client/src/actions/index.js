@@ -2,7 +2,7 @@
 //Action is a javascript object with a type property and optionally a payload
 //Action is returned instantly unless we use Redux Thunk and return a function
 import axios from 'axios'; //used to make AJAX requests
-import { FETCH_USER } from './types'; //import the action type FETCH_USER for fetchUser
+import { FETCH_USER, GET_STORIES } from './types'; //import the action type FETCH_USER for fetchUser
 
 //get the logged in user
 //make sure there is a proxy rule in /client/package.json to
@@ -17,3 +17,12 @@ export const fetchUser = () =>
     //res.data has the user model with the id and googleId
     dispatch({ type: FETCH_USER, payload: res.data });
   };
+
+//get hacker news stories
+export const getHackerNewsStories = () => async dispatch => {
+  const res = await axios.get(
+    'http://hn.algolia.com/api/v1/search?tags=front_page'
+  );
+  console.log(res.data.hits);
+  dispatch({ type: GET_STORIES, payload: res.data.hits });
+};

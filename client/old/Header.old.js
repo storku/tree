@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; // get the Link tag
-import MenuLoggedIn from './MenuLoggedIn';
-import MenuLoggedOut from './MenuLoggedOut';
+import { Menu } from 'semantic-ui-react';
 
 //<a> tag navigates to a completely different HTML document
 class Header extends Component {
@@ -14,17 +13,29 @@ class Header extends Component {
         return;
       //when the user is not logged in, show them a link to login
       case false:
-        return <MenuLoggedOut />;
+        return <a href="/auth/google">Login with Google</a>;
       //when the user is logged in, show them a link to logout
       default:
-        return <MenuLoggedIn />;
+        return <a href="/api/logout">Logout</a>;
     }
   }
 
   render() {
     //<Link> tag navigates to a different route rendered by React Router
     //<a> tag navigates to a completely different HTML document
-    return <div>{this.renderContent()}</div>;
+    return (
+      <div>
+        <Menu>
+          <Menu.Item name="welcome">
+            {/*if the user is logged in, send them to one link,
+            if the user is not, send them to a different link.
+            Check the user by using this.props.auth is an object / truthy*/}
+            <Link to={this.props.auth ? '/surveys' : '/'}>Welcome!</Link>
+          </Menu.Item>
+          <Menu.Item name="login">{this.renderContent()}</Menu.Item>
+        </Menu>
+      </div>
+    );
   }
 }
 
