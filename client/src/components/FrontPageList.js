@@ -2,16 +2,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { List, Icon } from 'semantic-ui-react';
-import axios from 'axios';
+import { List, Message, Icon } from 'semantic-ui-react';
 import * as actions from '../actions';
+import moment from 'moment'; //momentjs is used to calculate how long ago an article was posted
 
 class FrontPageList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      listOfItems: [['Hello', 'Hi', 'One'], ['Bye', 'Cya', 'Two']]
-    };
+    this.state = {};
   }
 
   componentDidMount() {
@@ -21,7 +19,7 @@ class FrontPageList extends Component {
   renderStoriesList() {
     return this.props.stories.map(story => {
       return (
-        <List.Item key={story.objectID}>
+        <List.Item key={story.id}>
           <List.Icon
             name="star"
             size="large"
@@ -33,8 +31,9 @@ class FrontPageList extends Component {
               {story.title}
             </List.Header>
             <List.Description>
-              {story.points} points by {story.author} created at{' '}
-              {story.created_at} with {story.num_comments} comments
+              {story.score} points by {story.by}{' '}
+              {moment(story.time * 1000).fromNow()} with {story.descendants}{' '}
+              comments
             </List.Description>
           </List.Content>
         </List.Item>
@@ -45,6 +44,12 @@ class FrontPageList extends Component {
   render() {
     return (
       <div>
+        <Message>
+          <Message.Header>
+            Welcome to the front page of HackerNews-clone!
+          </Message.Header>
+          <Icon color="red" name="heart" /> Welcome everyone!
+        </Message>
         <List divided relaxed>
           {this.renderStoriesList()}
         </List>

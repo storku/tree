@@ -20,9 +20,23 @@ export const fetchUser = () =>
 
 //get hacker news stories
 export const getHackerNewsStories = () => async dispatch => {
+  //get the top news stories IDs first
   const res = await axios.get(
-    'http://hn.algolia.com/api/v1/search?tags=front_page'
+    'https://hacker-news.firebaseio.com/v0/topstories.json'
   );
-  console.log(res.data.hits);
-  dispatch({ type: GET_STORIES, payload: res.data.hits });
+  //Then go through the first 20 stories IDs and get rest of stories
+  //Be sure to wrap everything in Promise.all
+  //RESEARCH THIS TO UNDERSTAND HOW IT WORKS!!!!!
+  const storiesIDs = res.data.slice(0, 20);
+  const stories = await Promise.all(
+    storiesIDs.map(async storyID => {
+      const url =
+        'https://hacker-news.firebaseio.com/v0/item/' + storyID + '.json';
+      const story = await axios(url);
+      const storyData = story.data;
+      return storyData;
+    })
+  );
+
+  dispatch({ type: GET_STORIES, payload: stories });
 };

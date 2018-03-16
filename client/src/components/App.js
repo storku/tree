@@ -9,9 +9,8 @@ import * as actions from '../actions'; //import all the action creators
 
 //import all the components in
 import Header from './Header';
-import Landing from './Landing';
-import Dashboard from './Dashboard';
 import FrontPage from './FrontPage';
+import Dashboard from './Dashboard';
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
@@ -29,10 +28,9 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={FrontPage} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route exact path="/surveys/new" component={SurveyNew} />
-            <Route exact path="/frontpage" component={FrontPage} />
           </div>
         </BrowserRouter>
       </div>
