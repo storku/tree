@@ -8,8 +8,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions'; //import all the action creators
 
 //import all the components in
-import Header from './Header';
+import Header from './header/Header';
 import FrontPage from './FrontPage';
+import Post from './post/Post';
 import Dashboard from './Dashboard';
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
@@ -29,6 +30,7 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={FrontPage} />
+            <Route path="/post/:postID" component={Post} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route exact path="/surveys/new" component={SurveyNew} />
           </div>

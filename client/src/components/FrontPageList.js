@@ -32,8 +32,11 @@ class FrontPageList extends Component {
             </List.Header>
             <List.Description>
               {story.score} points by {story.by}{' '}
-              {moment(story.time * 1000).fromNow()} with {story.descendants}{' '}
-              comments
+              <Link to={'/post/' + story.id}>
+                {moment(story.time * 1000).fromNow()}
+              </Link>{' '}
+              with {story.descendants}{' '}
+              <Link to={'/post/' + story.id}>comments</Link>
             </List.Description>
           </List.Content>
         </List.Item>

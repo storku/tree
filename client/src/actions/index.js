@@ -2,7 +2,7 @@
 //Action is a javascript object with a type property and optionally a payload
 //Action is returned instantly unless we use Redux Thunk and return a function
 import axios from 'axios'; //used to make AJAX requests
-import { FETCH_USER, GET_STORIES } from './types'; //import the action type FETCH_USER for fetchUser
+import { FETCH_USER, GET_STORIES, GET_STORY, GET_COMMENTS } from './types'; //import the action type FETCH_USER for fetchUser
 
 //get the logged in user
 //make sure there is a proxy rule in /client/package.json to
@@ -26,7 +26,8 @@ export const getHackerNewsStories = () => async dispatch => {
   );
   //Then go through the first 20 stories IDs and get rest of stories
   //Be sure to wrap everything in Promise.all
-  //RESEARCH THIS TO UNDERSTAND HOW IT WORKS!!!!!
+  //Promise.all will only resolve when every single promise/await inside it resolves
+  //Promise.all is required for waiting for multiple promises/awaits to complete
   const storiesIDs = res.data.slice(0, 20);
   const stories = await Promise.all(
     storiesIDs.map(async storyID => {
@@ -39,4 +40,41 @@ export const getHackerNewsStories = () => async dispatch => {
   );
 
   dispatch({ type: GET_STORIES, payload: stories });
+};
+
+//get a single hacker new story
+export const getHackerNewsStory = postID => async dispatch => {
+  const story = await axios.get(
+    'https://hacker-news.firebaseio.com/v0/item/' + postID + '.json'
+  );
+  const storyData = story.data;
+
+  dispatch({ type: GET_STORY, payload: storyData });
+};
+
+//get all the comments for a post
+export const getPostComments = postID => async dispatch => {
+  const story = await axios.get(
+    'https://hacker-news.firebaseio.com/v0/item/' + postID + '.json'
+  );
+  //get all the top level comments
+  const storyKidsIDs = story.data.kids;
+  let storyKids;
+  //if else statement is needed or posts with no comments will throw error
+  if (storyKidsIDs) {
+    storyKids = await Promise.all(
+      storyKidsIDs.map(async storyKidsID => {
+        const url =
+          'https://hacker-news.firebaseio.com/v0/item/' + storyKidsID + '.json';
+        const storyKid = await axios(url);
+        const storyKidData = storyKid.data;
+        return storyKidData;
+      })
+    );
+  } else {
+    console.log('Hello');
+    storyKids = [];
+  }
+
+  dispatch({ type: GET_COMMENTS, payload: storyKids });
 };

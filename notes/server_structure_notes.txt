@@ -4,6 +4,7 @@ server
     src -
       actions - Contains all the Redux Action Creators
       components -
+        header - Components for the Header Menu
         App.js - Rendering layer control (React Router)
       reducers - Contains all the Redux Reducers
         authReducer.js - Records whether or not the user is logged in
