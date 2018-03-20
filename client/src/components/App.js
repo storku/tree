@@ -12,6 +12,8 @@ import Header from './header/Header';
 import FrontPage from './FrontPage';
 import Post from './post/Post';
 import Dashboard from './Dashboard';
+import Test from './Test';
+import Test2 from './Test2';
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
@@ -33,6 +35,8 @@ class App extends Component {
             <Route path="/post/:postID" component={Post} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route exact path="/surveys/new" component={SurveyNew} />
+            <Route exact path="/test" component={Test} />
+            <Route exact path="/test2" component={Test2} />
           </div>
         </BrowserRouter>
       </div>
