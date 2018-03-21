@@ -1,6 +1,6 @@
 //get all comments for a post
 import axios from 'axios'; //used to make AJAX requests
-import { GET_COMMENTS_TREE } from './types';
+import { GET_COMMENTS_TREE, GET_COMMENTS_NUMBER } from './types';
 import _ from 'lodash';
 
 export const getCommentsTree = postID => async dispatch => {
@@ -20,10 +20,14 @@ export const getCommentsTree = postID => async dispatch => {
       const commentParent = comment.data.parent;
       const commentID = comment.data.id;
       const commentText = comment.data.text;
+      const commentBy = comment.data.by;
+      const commentTime = comment.data.time;
       commentsTree[kid] = {
         parent: commentParent,
         id: commentID,
-        text: commentText
+        text: commentText,
+        by: commentBy,
+        time: commentTime
       };
       if (commentKids) {
         //console.log(commentParent, commentKids);
@@ -60,7 +64,11 @@ export const getCommentsTree = postID => async dispatch => {
   }
 
   setTimeout(() => {
+    //count number of comments
+    const numberOfComments = Object.keys(commentsTree).length;
+    //convert the comments from flat to hierarchical
     searchTree(commentsTree);
     dispatch({ type: GET_COMMENTS_TREE, payload: roots });
+    dispatch({ type: GET_COMMENTS_NUMBER, payload: numberOfComments });
   }, 1500);
 };

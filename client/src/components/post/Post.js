@@ -33,7 +33,7 @@ class Post extends Component {
             {title}
           </Message.Header>
           {score} points by {by} {moment(time * 1000).fromNow()} | hide | past |
-          web | favorite | comments | id: {id}
+          web | favorite | {this.props.commentsNumber} comments | id: {id}
         </Message>
       </div>
     );
@@ -59,9 +59,10 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps({ story, commentsTree }) {
+function mapStateToProps({ story, commentsTree, commentsNumber }) {
   console.log(commentsTree);
-  return { story, commentsTree };
+  console.log(commentsNumber);
+  return { story, commentsTree, commentsNumber };
 }
 
 export default connect(mapStateToProps, actions)(Post);

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { List } from 'semantic-ui-react';
 import * as actions from '../../actions';
 import moment from 'moment'; //momentjs is used to calculate how long ago an article was posted
+import PropTypes from 'prop-types';
 
 class TopLevelComments extends Component {
   componentDidMount() {
@@ -25,7 +26,14 @@ class TopLevelComments extends Component {
 
       return (
         <List.Item key={comment.id}>
-          <div dangerouslySetInnerHTML={createMarkup()} /> by {comment.by}
+          <List.Icon name="thumbs up" color="yellow" size="large" />
+          <List.Content>
+            <List.Header>
+              {comment.by} {moment(comment.time * 1000).fromNow()} id:{' '}
+              {comment.id}
+            </List.Header>
+            <div dangerouslySetInnerHTML={createMarkup()} />
+          </List.Content>
         </List.Item>
       );
     });
@@ -41,6 +49,11 @@ class TopLevelComments extends Component {
     );
   }
 }
+
+//check the type of this.props.comments to make sure it is an array
+TopLevelComments.propTypes = {
+  comments: PropTypes.array.isRequired
+};
 
 function mapStateToProps({ comments }) {
   return { comments };

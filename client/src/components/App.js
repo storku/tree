@@ -12,8 +12,8 @@ import Header from './header/Header';
 import FrontPage from './FrontPage';
 import Post from './post/Post';
 import Dashboard from './Dashboard';
-import Test from './Test';
-import Test2 from './Test2';
+import Test from './test_stuff/Test';
+import Test2 from './test_stuff/Test2';
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {

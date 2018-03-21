@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
@@ -9,7 +9,7 @@ class MenuLoggedIn extends Component {
       <Menu>
         <Menu.Item>Logo</Menu.Item>
         <Menu.Item>
-          <Link to={'/'}>Title</Link>
+          <Link to={'/'}>Front Page</Link>
         </Menu.Item>
         <Menu.Item>Things 1</Menu.Item>
         <Menu.Item>Things 2</Menu.Item>
