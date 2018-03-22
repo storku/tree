@@ -11,6 +11,7 @@ server
         surveysReducer.js - Records a list of all surveys user has created
       index.js - Data layer control (Redux)
     tests -
+    utils - utility scripts
   config - Protected API keys and settings
   models - All the different Model Classes created by Mongoose
   notes - Additional information on various structures and subjects

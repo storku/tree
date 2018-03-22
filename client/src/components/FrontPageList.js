@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { List, Message, Icon } from 'semantic-ui-react';
 import * as actions from '../actions';
 import moment from 'moment'; //momentjs is used to calculate how long ago an article was posted
+import getWebsite from '../utils/getWebsite'; //use it to get base domain name of a url
 
 class FrontPageList extends Component {
   constructor(props) {
@@ -36,7 +37,9 @@ class FrontPageList extends Component {
                 {moment(story.time * 1000).fromNow()}
               </Link>{' '}
               with {story.descendants}{' '}
-              <Link to={'/post/' + story.id}>comments</Link>
+              <Link to={'/post/' + story.id}>comments</Link> ({getWebsite(
+                story.url
+              )})
             </List.Description>
           </List.Content>
         </List.Item>

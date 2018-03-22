@@ -8,6 +8,7 @@ import moment from 'moment'; //momentjs is used to calculate how long ago an art
 import TopLevelComments from './TopLevelComments';
 import AllComments from './AllComments';
 import _ from 'lodash';
+import getWebsite from '../../utils/getWebsite'; //use it to get base domain name of a url
 
 class Post extends Component {
   componentDidMount() {
@@ -33,7 +34,8 @@ class Post extends Component {
             {title}
           </Message.Header>
           {score} points by {by} {moment(time * 1000).fromNow()} | hide | past |
-          web | favorite | {this.props.commentsNumber} comments | id: {id}
+          web | favorite | {this.props.commentsNumber} comments |{' '}
+          {getWebsite(url)} | id: {id}
         </Message>
       </div>
     );
