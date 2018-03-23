@@ -5,6 +5,7 @@ import storyReducer from './storyReducer';
 import commentsReducer from './commentsReducer';
 import commentsTreeReducer from './commentsTreeReducer';
 import commentsNumberReducer from './commentsNumberReducer';
+import pageIDReducer from './pageIDReducer';
 
 //combine all the reducers here
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   story: storyReducer,
   comments: commentsReducer,
   commentsTree: commentsTreeReducer,
-  commentsNumber: commentsNumberReducer
+  commentsNumber: commentsNumberReducer,
+  pageID: pageIDReducer
 });

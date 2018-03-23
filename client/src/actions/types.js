@@ -6,3 +6,4 @@ export const GET_COMMENTS = 'get_comments';
 export const GET_COMMENTS_TREE = 'get_comments_tree';
 export const GET_COMMENTS_NUMBER = 'get_comments_number';
 export const REMOVE_ALL_COMMENTS = 'remove_all_comments';
+export const GET_PAGE_ID = 'get_page_id';

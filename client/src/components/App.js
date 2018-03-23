@@ -9,7 +9,7 @@ import * as actions from '../actions'; //import all the action creators
 
 //import all the components in
 import Header from './header/Header';
-import FrontPage from './FrontPage';
+import FrontPage from './frontpage/FrontPage';
 import Post from './post/Post';
 import Dashboard from './Dashboard';
 import Test from './test_stuff/Test';
@@ -32,6 +32,8 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={FrontPage} />
+            <Route exact path="/news" component={FrontPage} />
+            <Route path="/news/:pageID" component={FrontPage} />
             <Route path="/post/:postID" component={Post} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route exact path="/surveys/new" component={SurveyNew} />

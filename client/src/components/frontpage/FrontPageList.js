@@ -2,19 +2,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { List, Message, Icon } from 'semantic-ui-react';
-import * as actions from '../actions';
+import { List, Icon } from 'semantic-ui-react';
 import moment from 'moment'; //momentjs is used to calculate how long ago an article was posted
-import getWebsite from '../utils/getWebsite'; //use it to get base domain name of a url
+import getWebsite from '../../utils/getWebsite'; //use it to get base domain name of a url
 
 class FrontPageList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-  }
-
-  componentDidMount() {
-    this.props.getHackerNewsStories();
   }
 
   renderStoriesList() {
@@ -50,12 +45,6 @@ class FrontPageList extends Component {
   render() {
     return (
       <div>
-        <Message>
-          <Message.Header>
-            Welcome to the front page of HackerNews-clone!
-          </Message.Header>
-          <Icon color="red" name="heart" /> Welcome everyone!
-        </Message>
         <List divided relaxed>
           {this.renderStoriesList()}
         </List>
@@ -68,4 +57,4 @@ function mapStateToProps({ stories }) {
   return { stories };
 }
 
-export default connect(mapStateToProps, actions)(FrontPageList);
+export default connect(mapStateToProps)(FrontPageList);
