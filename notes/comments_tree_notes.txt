@@ -1,8 +1,0 @@
-function:
-  go through all the kids
-  for each kid
-    add the kid to the commentsTree
-    make an API call to get its data
-    if the data contains kids:
-      add the kids to the commentsTree[kid]
-      call the function with the kids
