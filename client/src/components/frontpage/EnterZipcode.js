@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Form, Button, Input } from 'semantic-ui-react';
@@ -49,8 +49,4 @@ class EnterZipcode extends Component {
   }
 }
 
-function mapStateToProps() {
-  return;
-}
-
-export default withRouter(connect(mapStateToProps, actions)(EnterZipcode));
+export default withRouter(connect(null, actions)(EnterZipcode));

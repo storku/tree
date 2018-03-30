@@ -7,3 +7,6 @@ export * from './fetchUserActions';
 
 //fetch rep info
 export * from './fetchRepInfo';
+
+//fetch auto location
+export * from './fetchLocation';

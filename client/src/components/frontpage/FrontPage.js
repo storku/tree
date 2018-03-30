@@ -10,6 +10,8 @@ class FrontPage extends Component {
       <div>
         <h2>Welcome to the App</h2>
         <AutoDetect />
+        <br />
+        <br />
         <EnterZipcode />
       </div>
     );
