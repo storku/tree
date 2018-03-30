@@ -4,3 +4,6 @@
 
 //fetch user
 export * from './fetchUserActions';
+
+//fetch rep info
+export * from './fetchRepInfo';
