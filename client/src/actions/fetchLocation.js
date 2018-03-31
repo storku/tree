@@ -5,9 +5,6 @@ import { googleEverything } from '../config/keys';
 //take latitude and longitude from navigator.geolocation.getCurrentPosition
 //use google civic with lat/long info to get the reps!
 export const fetchLocation = coords => async dispatch => {
-  console.log('arrived at the action creator');
-  console.log(coords.latitude);
-  console.log(coords.longitude);
   const key = googleEverything;
   const url =
     'https://www.googleapis.com/civicinfo/v2/representatives?key=' +

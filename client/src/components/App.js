@@ -32,7 +32,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={FrontPage} />
             <Route exact path="/reps" component={RepsPage} />
-            <Route exact path="/twitter" component={TwitterPage} />
+            <Route path="/twitter/:name" component={TwitterPage} />
           </div>
         </BrowserRouter>
       </div>

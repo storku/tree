@@ -37,7 +37,7 @@ class EnterZipcode extends Component {
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
-              placeholder="Enter Your Address"
+              placeholder="Enter An Address"
             />
           </Form.Field>
           <Button type="submit" onClick={this.handleSubmit}>

@@ -5,10 +5,9 @@ import EnterZipcode from './EnterZipcode';
 
 class FrontPage extends Component {
   render() {
-    console.log(this.props.repInfo);
     return (
       <div>
-        <h2>Welcome to the App</h2>
+        <h2>Welcome to MsgMyRep</h2>
         <AutoDetect />
         <br />
         <br />

@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as actions from '../../actions';
 import { List, Icon } from 'semantic-ui-react';
 
+//to allow the twitter popup box, a <script> tag is placed in index.html
 class RepsPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(name, twitter, photoUrl) {
+    this.props.fetchRepPlatform(name, twitter, photoUrl);
+  }
+
   renderReps() {
     const listOfReps = [];
     const { officials, offices } = this.props.repInfo;
@@ -15,14 +27,16 @@ class RepsPage extends Component {
       let facebook = '';
       let youtube = '';
       for (const channel of official.channels) {
-        // if (channel.type === 'Twitter') {
-        //   twitter = 'https://twitter.com/' + channel.id;
+        if (channel.type === 'Twitter') {
+          twitter = channel.id;
+        }
         if (channel.type === 'Facebook') {
-          facebook = 'https://www.facebook.com/' + channel.id;
+          facebook = channel.id;
         } else if (channel.type === 'YouTube') {
-          youtube = 'https://www.youtube.com/' + channel.id;
+          youtube = channel.id;
         }
       }
+      const url = official.urls[0];
       listOfReps.push(
         <List.Item key={official.name}>
           <List.Icon
@@ -39,13 +53,20 @@ class RepsPage extends Component {
               <img src={official.photoUrl} />
               <br />
               <Icon name="twitter" size="large" color="blue" />
-              <Link to="/twitter">Twitter</Link>
+              <a
+                href={'https://twitter.com/intent/tweet?screen_name=' + twitter}
+              >
+                Twitter
+              </a>
               <br />
               <Icon name="facebook" size="large" color="blue" />
               <a href={facebook}>Facebook</a>
               <br />
               <Icon name="youtube" size="large" color="red" />
               <a href={youtube}>YouTube</a>
+              <br />
+              <Icon name="discussions" size="large" color="teal" />
+              <a href={url + 'Contact'}>Website Contact</a>
             </List.Description>
           </List.Content>
         </List.Item>
@@ -54,25 +75,7 @@ class RepsPage extends Component {
     }
     return listOfReps;
   }
-  // renderReps() {
-  //   console.log(this.props.repInfo.officials);
-  //   return this.props.repInfo.officials.map(official => {
-  //     return (
-  //       <List.Item key={official.name}>
-  //         <List.Icon
-  //           name="star"
-  //           size="large"
-  //           verticalAlign="middle"
-  //           color="yellow"
-  //         />
-  //         <List.Content>
-  //           <List.Header>{official.name}</List.Header>
-  //           <List.Description />
-  //         </List.Content>
-  //       </List.Item>
-  //     );
-  //   });
-  // }
+
   render() {
     return (
       <div>
@@ -88,4 +91,4 @@ function mapStateToProps({ repInfo }) {
   return { repInfo };
 }
 
-export default connect(mapStateToProps)(RepsPage);
+export default connect(mapStateToProps, actions)(RepsPage);

@@ -10,3 +10,9 @@ export * from './fetchRepInfo';
 
 //fetch auto location
 export * from './fetchLocation';
+
+//get the 1 rep and the 1 platform combo
+export * from './fetchRepPlatform';
+
+//send tweet
+export * from './sendTweet';
