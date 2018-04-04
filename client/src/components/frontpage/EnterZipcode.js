@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { Form, Button, Input } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom'; //required to use this.props.history.push
 
 class EnterZipcode extends Component {
@@ -31,9 +31,11 @@ class EnterZipcode extends Component {
   render() {
     return (
       <div>
+        <h4>Enter Your Address Manually</h4>
         <Form>
-          <Form.Field>
-            <Input
+          <Form.Field className="FormField">
+            <Form.Input
+              className="FormInput"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}

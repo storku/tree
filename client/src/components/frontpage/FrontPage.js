@@ -6,12 +6,20 @@ import EnterZipcode from './EnterZipcode';
 class FrontPage extends Component {
   render() {
     return (
-      <div>
-        <h2>Welcome to MsgMyRep</h2>
-        <AutoDetect />
-        <br />
-        <br />
-        <EnterZipcode />
+      <div className="Box-outer">
+        <div className="Box-inner">
+          <h2 className="App-header">Welcome to #MsgMyRep</h2>
+          <p>
+            MsgMyRep (Message My Rep) allows you to find your political
+            representatives based on your location and chat with individuals
+            from your Congressional district!
+          </p>
+          <div className="Grid-wrapper">
+            <AutoDetect />
+            <h4>OR</h4>
+            <EnterZipcode />
+          </div>
+        </div>
       </div>
     );
   }

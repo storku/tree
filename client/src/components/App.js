@@ -28,8 +28,7 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div>
-            <Header />
+          <div className="App">
             <Route exact path="/" component={FrontPage} />
             <Route exact path="/reps" component={RepsPage} />
             <Route path="/twitter/:name" component={TwitterPage} />

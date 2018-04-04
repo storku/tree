@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import { List, Icon } from 'semantic-ui-react';
+import Header from '../header/Header';
 
 //to allow the twitter popup box, a <script> tag is placed in index.html
 class RepsPage extends Component {
@@ -50,11 +51,15 @@ class RepsPage extends Component {
               {official.name} - {official.party}
             </List.Header>
             <List.Description>
-              <img src={official.photoUrl} />
+              <img src={official.photoUrl} alt={official.name} />
               <br />
               <Icon name="twitter" size="large" color="blue" />
               <a
-                href={'https://twitter.com/intent/tweet?screen_name=' + twitter}
+                href={
+                  'https://twitter.com/intent/tweet?screen_name=' +
+                  twitter +
+                  '&hashtags=MsgMyRep'
+                }
               >
                 Twitter
               </a>
@@ -79,6 +84,8 @@ class RepsPage extends Component {
   render() {
     return (
       <div>
+        <Header />
+        <h4>My Representatives in Congress</h4>
         <List divided relaxed>
           {this.props.repInfo.offices ? this.renderReps() : 'Loading...'}
         </List>

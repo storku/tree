@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom'; //required to use this.props.history.push
 
 class AutoDetect extends Component {
@@ -17,7 +17,6 @@ class AutoDetect extends Component {
   }
 
   success(position) {
-    console.log('location has been detected');
     this.setState({ detecting: false });
     const coords = position.coords;
     this.props.fetchLocation(coords);
@@ -28,14 +27,22 @@ class AutoDetect extends Component {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(this.success);
     this.setState({ detecting: true });
-    console.log('detecting location');
   }
 
   render() {
     return (
       <div>
-        {this.state.detecting ? <h5>Currently Detecting Your Location</h5> : ''}
-        <Button onClick={this.handleClick}>Detect Your Reps!</Button>
+        <h4>Detect Your Reps Automatically</h4>
+        {this.state.detecting ? (
+          <div>
+            <Icon name="spinner" size="huge" loading />
+          </div>
+        ) : (
+          <Icon name="map pin" size="huge" />
+        )}
+        <br />
+        <br />
+        <Button onClick={this.handleClick}>Go!</Button>
       </div>
     );
   }
