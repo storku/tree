@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Form, Button } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom'; //required to use this.props.history.push
 
-class EnterZipcode extends Component {
+class MessageBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,32 +21,27 @@ class EnterZipcode extends Component {
   }
 
   handleSubmit(event) {
-    //event.preventDefault();
-    this.props.fetchRepInfo(this.state.value);
-    this.props.history.push('/reps');
+    event.preventDefault();
+    this.props.sendChatMessage(this.state.value);
+    this.setState({
+      value: ''
+    });
   }
 
   render() {
     return (
       <div>
-        <h4 className="HeaderRight">Enter Your Address Manually</h4>
         <Form>
-          <Form.Field className="FormField">
+          <Form.Field>
             <Form.Input
-              className="FormInput"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
-              placeholder="Enter An Address"
+              placeholder="Enter A Message"
               size="large"
             />
           </Form.Field>
-          <Button
-            type="submit"
-            onClick={this.handleSubmit}
-            primary
-            className="Button-right"
-          >
+          <Button type="submit" onClick={this.handleSubmit} primary>
             Submit
           </Button>
         </Form>
@@ -57,4 +50,4 @@ class EnterZipcode extends Component {
   }
 }
 
-export default withRouter(connect(null, actions)(EnterZipcode));
+export default connect(null, actions)(MessageBox);

@@ -16,3 +16,6 @@ export * from './fetchRepPlatform';
 
 //send tweet
 export * from './sendTweet';
+
+//send chatroom message
+export * from './sendChatMessage';

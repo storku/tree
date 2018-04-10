@@ -32,17 +32,19 @@ class AutoDetect extends Component {
   render() {
     return (
       <div>
-        <h4>Detect Your Reps Automatically</h4>
+        <h4 className="HeaderLeft">Detect Your Reps Automatically</h4>
         {this.state.detecting ? (
           <div>
-            <Icon name="spinner" size="huge" loading />
+            <Icon name="spinner" size="huge" loading className="Icon-left" />
           </div>
         ) : (
-          <Icon name="map pin" size="huge" />
+          <Icon name="map pin" size="huge" className="Icon-left" />
         )}
         <br />
         <br />
-        <Button onClick={this.handleClick}>Go!</Button>
+        <Button onClick={this.handleClick} primary className="Button-left">
+          Go!
+        </Button>
       </div>
     );
   }

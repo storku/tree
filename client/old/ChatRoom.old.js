@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Header from '../header/Header';
+import Message from './Message';
 import { Form, Button } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom'; //required to use this.props.history.push
 
-class EnterZipcode extends Component {
+class ChatRoom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      user: 'cool_kid'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,32 +24,36 @@ class EnterZipcode extends Component {
   }
 
   handleSubmit(event) {
-    //event.preventDefault();
-    this.props.fetchRepInfo(this.state.value);
-    this.props.history.push('/reps');
+    event.preventDefault();
+    this.props.sendChatMessage(this.state.value);
+    this.setState({
+      value: ''
+    });
+  }
+
+  renderChatMessages() {
+    return this.props.chatMessages.map(message => {
+      return <Message text={message} user={this.state.user} key={message} />;
+    });
   }
 
   render() {
     return (
       <div>
-        <h4 className="HeaderRight">Enter Your Address Manually</h4>
+        <Header />
+        <h4>Welcome to the ChatRoom</h4>
+        {this.renderChatMessages()}
         <Form>
-          <Form.Field className="FormField">
+          <Form.Field>
             <Form.Input
-              className="FormInput"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
-              placeholder="Enter An Address"
+              placeholder="Enter A Message"
               size="large"
             />
           </Form.Field>
-          <Button
-            type="submit"
-            onClick={this.handleSubmit}
-            primary
-            className="Button-right"
-          >
+          <Button type="submit" onClick={this.handleSubmit} primary>
             Submit
           </Button>
         </Form>
@@ -57,4 +62,8 @@ class EnterZipcode extends Component {
   }
 }
 
-export default withRouter(connect(null, actions)(EnterZipcode));
+function mapStateToProps({ chatMessages }) {
+  return { chatMessages };
+}
+
+export default connect(mapStateToProps, actions)(ChatRoom);

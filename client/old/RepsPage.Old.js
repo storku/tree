@@ -1,10 +1,10 @@
+//before switching to Cards!
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import { List, Icon, Card, Image } from 'semantic-ui-react';
 import Header from '../header/Header';
-import Loading from './Loading';
 
 //to allow the twitter popup box, a <script> tag is placed in index.html
 class RepsPage extends Component {
@@ -23,13 +23,8 @@ class RepsPage extends Component {
     const { officials, offices } = this.props.repInfo;
     let i = 2;
     while (i < 5) {
-      let position = '';
-      if (i === 2 || i === 3) {
-        position = 'Senator';
-      } else if (i === 4) {
-        position = 'House of Representative';
-      }
       const official = officials[i];
+      console.log(official);
       let twitter = '';
       let facebook = '';
       let youtube = '';
@@ -45,18 +40,20 @@ class RepsPage extends Component {
       }
       const url = official.urls[0];
       listOfReps.push(
-        <Card key={official.name} className="Card">
-          <Image
-            className="RepImage"
-            src={official.photoUrl}
-            alt={official.name}
+        <List.Item key={official.name}>
+          <List.Icon
+            name="star"
+            size="large"
+            verticalAlign="middle"
+            color="yellow"
           />
-          <Card.Content>
-            <Card.Header>{official.name}</Card.Header>
-            <Card.Meta>
-              {official.party} {position}
-            </Card.Meta>
-            <Card.Description>
+          <List.Content>
+            <List.Header>
+              {official.name} - {official.party}
+            </List.Header>
+            <List.Description>
+              <img src={official.photoUrl} alt={official.name} />
+              <br />
               <Icon name="twitter" size="large" color="blue" />
               <a
                 href={
@@ -76,9 +73,9 @@ class RepsPage extends Component {
               <br />
               <Icon name="discussions" size="large" color="teal" />
               <a href={url + 'Contact'}>Website Contact</a>
-            </Card.Description>
-          </Card.Content>
-        </Card>
+            </List.Description>
+          </List.Content>
+        </List.Item>
       );
       i++;
     }
@@ -89,22 +86,17 @@ class RepsPage extends Component {
     return (
       <div>
         <Header />
-        <h4>Representatives from the {this.props.district}</h4>
-        {this.props.repInfo.offices ? this.renderReps() : <Loading />}
+        <h4>My Representatives in Congress</h4>
+        <List divided relaxed>
+          {this.props.repInfo.offices ? this.renderReps() : 'Loading...'}
+        </List>
       </div>
     );
   }
 }
 
 function mapStateToProps({ repInfo }) {
-  //get the congressional district from the repInfo
-  let district = '???';
-  if (repInfo.divisions) {
-    const keys = Object.keys(repInfo.divisions);
-    district = repInfo.divisions[keys[2]].name;
-  }
-
-  return { repInfo, district };
+  return { repInfo };
 }
 
 export default connect(mapStateToProps, actions)(RepsPage);

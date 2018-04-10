@@ -16,7 +16,7 @@ class FrontPage extends Component {
           </p>
           <div className="Grid-wrapper">
             <AutoDetect />
-            <h4>OR</h4>
+            <h4 className="HeaderMiddle">OR</h4>
             <EnterZipcode />
           </div>
         </div>

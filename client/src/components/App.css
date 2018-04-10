@@ -26,7 +26,39 @@
 .Grid-wrapper {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
-  align-items: end;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    'a g d'
+    'b g e'
+    'c g f';
+}
+
+.HeaderLeft {
+  grid-area: a;
+}
+
+.Icon-left {
+  grid-area: b;
+}
+
+.Button-left {
+  grid-area: c;
+}
+
+.HeaderRight {
+  grid-area: d;
+}
+
+.FormInput {
+  grid-area: e;
+}
+
+.Button-right {
+  grid-area: f;
+}
+
+.HeaderMiddle {
+  grid-area: g;
 }
 
 /*paragraph*/
@@ -66,11 +98,15 @@ h4 {
   margin: 0 auto 1em auto !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*RepsPage*/
+.ui.card {
+  width: 200px;
+  border: 3px solid #4fc5b6;
+  border-radius: 2%;
+}
+
+.RepImage {
+  width: inherit;
+  border: 3px solid #4fc5b6;
+  border-radius: 50%;
 }
