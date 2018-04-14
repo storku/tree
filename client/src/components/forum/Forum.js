@@ -13,4 +13,4 @@ class Forum extends Component {
   }
 }
 
-export default Forum;
+export default connect()(Forum);

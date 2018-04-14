@@ -11,7 +11,9 @@ class MenuLoggedIn extends Component {
         <Menu.Item>
           <Link to={'/'}>Front Page</Link>
         </Menu.Item>
-        <Menu.Item>Things 1</Menu.Item>
+        <Menu.Item>
+          <Link to={'/chat'}>Chatroom</Link>
+        </Menu.Item>
         <Menu.Item>Things 2</Menu.Item>
         <Menu.Item>Things 3</Menu.Item>
         <Menu.Item>Search</Menu.Item>

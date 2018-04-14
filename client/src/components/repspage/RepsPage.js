@@ -69,6 +69,7 @@ class RepsPage extends Component {
               </a>
               <br />
               <Icon name="facebook" size="large" color="blue" />
+              {/*https://developers.facebook.com/docs/plugins/page-plugin/*/}
               <a href={facebook}>Facebook</a>
               <br />
               <Icon name="youtube" size="large" color="red" />
