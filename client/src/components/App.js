@@ -10,11 +10,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions'; //import all the action creators
 
 //import all the components in
+import Header from './header/Header';
 import FrontPage from './frontpage/FrontPage';
-import RepsPage from './repspage/RepsPage';
-import TwitterPage from './socialmediapages/TwitterPage';
-import Forum from './forum/Forum';
-import ChatRoom from './chatroom/ChatRoom';
 
 class App extends Component {
   //in order to call the action creator, hook it up with connect first
@@ -30,11 +27,8 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div className="App">
+            <Header />
             <Route exact path="/" component={FrontPage} />
-            <Route exact path="/reps" component={RepsPage} />
-            <Route path="/twitter/:name" component={TwitterPage} />
-            <Route path="/forum" component={Forum} />
-            <Route path="/chat" component={ChatRoom} />
           </div>
         </BrowserRouter>
       </div>
