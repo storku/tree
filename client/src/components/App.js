@@ -12,13 +12,11 @@ import * as actions from '../actions'; //import all the action creators
 //import all the components in
 import Header from './header/Header';
 import FrontPage from './frontpage/FrontPage';
+import SearchPage from './search/SearchPage';
 
 class App extends Component {
   //in order to call the action creator, hook it up with connect first
-  componentDidMount() {
-    //call the actionCreator fetchUser
-    this.props.fetchUser();
-  }
+  componentDidMount() {}
 
   render() {
     //exact is equivalent to exact={true}, makes the path match exactly
@@ -29,6 +27,7 @@ class App extends Component {
           <div className="App">
             <Header />
             <Route exact path="/" component={FrontPage} />
+            <Route path="/search/:id" component={SearchPage} />
           </div>
         </BrowserRouter>
       </div>

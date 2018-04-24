@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AutoDetect from './AutoDetect';
-import EnterZipcode from './EnterZipcode';
+import SearchBar from '../search/SearchBar';
+import TwitterUserInfo from './TwitterUserInfo';
+import Canvas from '../canvas/Canvas';
 
 class FrontPage extends Component {
   render() {
+    console.log(this.props.searchTwitter);
     return (
-      <div className="Box-outer">
-        <div className="Box-inner">
-          <h2 className="App-header">Welcome to #MsgMyRep</h2>
-          <p>
-            MsgMyRep (Message My Rep) allows you to find your political
-            representatives based on your location and chat with individuals
-            from your Congressional district!
-          </p>
-          <div className="Grid-wrapper">
-            <AutoDetect />
-            <h4 className="HeaderMiddle">OR</h4>
-            <EnterZipcode />
-          </div>
-        </div>
+      <div>
+        <SearchBar />
+        {this.props.searchTwitter && <TwitterUserInfo />}
+        <Canvas />
       </div>
     );
   }
 }
 
-function mapStateToProps({ repInfo }) {
-  return { repInfo };
+function mapStateToProps({ searchTwitter }) {
+  return { searchTwitter };
 }
 
 export default connect(mapStateToProps)(FrontPage);
