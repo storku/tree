@@ -12,6 +12,7 @@ import * as actions from '../actions'; //import all the action creators
 //import all the components in
 import Header from './header/Header';
 import FrontPage from './frontpage/FrontPage';
+import DonatePage from './donate/DonatePage';
 import SearchPage from './search/SearchPage';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
           <div className="App">
             <Header />
             <Route exact path="/" component={FrontPage} />
+            <Route exact path="/donate" component={DonatePage} />
             <Route path="/search/:id" component={SearchPage} />
           </div>
         </BrowserRouter>

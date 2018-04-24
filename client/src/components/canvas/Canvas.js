@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { GRID_W, GRID_H, GRID_GAP, GRID_COLS, GRID_ROWS } from './constants';
+import {
+  GRID_W,
+  GRID_H,
+  GRID_GAP,
+  GRID_COLS,
+  GRID_ROWS,
+  START_W,
+  START_H
+} from './constants';
 import { colorRect, colorCircle } from './graphicsCommon';
 import { levelOne } from './levels/levels';
 
@@ -13,6 +21,9 @@ class Canvas extends Component {
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext('2d');
 
+    //Don't use window.onload because Link tag from
+    //React Router Dom does not call it!!!
+    //Fix it!!!
     window.onload = () => {
       colorCircle(ctx, 300, 300, 300, 'green');
 
@@ -41,8 +52,8 @@ class Canvas extends Component {
         if (this.levelGrid[arrayIndex] === 0) {
           colorRect(
             ctx,
-            GRID_W * eachCol + 50,
-            GRID_H * eachRow + 50,
+            GRID_W * eachCol + START_W,
+            GRID_H * eachRow + START_H,
             GRID_W - GRID_GAP,
             GRID_H - GRID_GAP,
             'gray'
@@ -50,8 +61,8 @@ class Canvas extends Component {
         } else if (this.levelGrid[arrayIndex] === 1) {
           colorRect(
             ctx,
-            GRID_W * eachCol + 50,
-            GRID_H * eachRow + 50,
+            GRID_W * eachCol + START_W,
+            GRID_H * eachRow + START_H,
             GRID_W - GRID_GAP,
             GRID_H - GRID_GAP,
             'black'

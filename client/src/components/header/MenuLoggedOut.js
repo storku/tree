@@ -9,11 +9,14 @@ class MenuLoggedIn extends Component {
       <Menu>
         <Menu.Item>Logo</Menu.Item>
         <Menu.Item>
-          <Link to={'/'}>Front Page</Link>
+          <a href="/">Front Page</a>
         </Menu.Item>
+        <Menu.Item>My Garden</Menu.Item>
         <Menu.Item>Things 2</Menu.Item>
         <Menu.Item>Things 3</Menu.Item>
-        <Menu.Item>Search</Menu.Item>
+        <Menu.Item>
+          <a href="/donate">Donate</a>
+        </Menu.Item>
         <Menu.Item>
           <a href="/auth/google">Log In</a>
         </Menu.Item>
