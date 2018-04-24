@@ -27,45 +27,57 @@ class DonatePage extends Component {
   }
 
   handleChangeOne(event) {
-    const newValue = event;
-    const totalDiff = this.state.total - event - this.state.tipValue;
+    const charityOneValueNew = event;
+    const charityOneValueOld = this.state.charityOneValue;
+    const diff = charityOneValueOld - charityOneValueNew;
+    const charityTwoValueNew = this.state.charityTwoValue + diff;
+    const tipValueNew = this.state.tipValue + diff;
 
-    if (
-      newValue >= 0 &&
-      newValue <= 100 &&
-      totalDiff >= 0 &&
-      totalDiff <= 100
-    ) {
+    if (charityTwoValueNew >= 0 && charityTwoValueNew <= 100) {
       this.setState({
-        charityOneValue: newValue,
-        charityTwoValue: totalDiff
+        charityOneValue: charityOneValueNew,
+        charityTwoValue: charityTwoValueNew
       });
+    } else if (charityTwoValueNew < 0) {
+      if (tipValueNew >= 0) {
+        this.setState({
+          charityOneValue: charityOneValueNew,
+          tipValue: tipValueNew
+        });
+      }
     }
   }
 
   handleChangeTwo(event) {
-    const newValue = event;
-    const totalDiff = this.state.total - event - this.state.tipValue;
+    const charityTwoValueNew = event;
+    const charityTwoValueOld = this.state.charityTwoValue;
+    const diff = charityTwoValueOld - charityTwoValueNew;
+    const charityOneValueNew = this.state.charityOneValue + diff;
+    const tipValueNew = this.state.tipValue + diff;
 
-    if (
-      newValue >= 0 &&
-      newValue <= 100 &&
-      totalDiff >= 0 &&
-      totalDiff <= 100
-    ) {
+    if (charityOneValueNew >= 0 && charityOneValueNew <= 100) {
       this.setState({
-        charityOneValue: totalDiff,
-        charityTwoValue: newValue
+        charityOneValue: charityOneValueNew,
+        charityTwoValue: charityTwoValueNew
+      });
+    } else if (charityOneValueNew < 0 && tipValueNew >= 0) {
+      this.setState({
+        charityTwoValue: charityTwoValueNew,
+        tipValue: tipValueNew
       });
     }
   }
 
   handleChangeTip(event) {
-    const newValue = event;
-    const oldValue = this.state.tipValue;
-    const diff = oldValue - newValue;
-    const charityOneValueNew = this.state.charityOneValue + diff / 2;
-    const charityTwoValueNew = this.state.charityTwoValue + diff / 2;
+    const tipValueNew = event;
+    const tipValueOld = this.state.tipValue;
+    const diff = tipValueOld - tipValueNew;
+
+    const charityOneValueOld = this.state.charityOneValue;
+    const charityTwoValueOld = this.state.charityTwoValue;
+    const charityOneValueNew = charityOneValueOld + diff / 2;
+    const charityTwoValueNew = charityTwoValueOld + diff / 2;
+
     if (
       charityOneValueNew >= 0 &&
       charityOneValueNew <= 100 &&
@@ -75,7 +87,17 @@ class DonatePage extends Component {
       this.setState({
         charityOneValue: charityOneValueNew,
         charityTwoValue: charityTwoValueNew,
-        tipValue: newValue
+        tipValue: tipValueNew
+      });
+    } else if (charityOneValueNew < 0 && charityTwoValueNew >= 0) {
+      this.setState({
+        charityTwoValue: charityTwoValueOld + diff,
+        tipValue: tipValueNew
+      });
+    } else if (charityTwoValueNew < 0 && charityOneValueNew >= 0) {
+      this.setState({
+        charityOneValue: charityOneValueOld + diff,
+        tipValue: tipValueNew
       });
     }
   }
