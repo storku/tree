@@ -4,3 +4,6 @@
 
 //fetch user
 export * from './searchTwitter';
+
+//get the donation
+export * from './getDonation';

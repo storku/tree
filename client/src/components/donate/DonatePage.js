@@ -13,17 +13,26 @@ class DonatePage extends Component {
     super(props);
 
     this.state = {
+      donationValue: 0,
       total: 100,
       charityOneValue: 55,
       charityTwoValue: 44,
       tipValue: 1
     };
 
+    this.handleDonationValue = this.handleDonationValue.bind(this);
+
     this.handleChangeOne = this.handleChangeOne.bind(this);
     this.handleChangeTwo = this.handleChangeTwo.bind(this);
     this.handleChangeTip = this.handleChangeTip.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleDonationValue(value, event) {
+    this.setState({
+      donationValue: value
+    });
   }
 
   handleChangeOne(event) {
@@ -69,12 +78,15 @@ class DonatePage extends Component {
   }
 
   handleChangeTip(event) {
+    const {
+      tipValue: tipValueOld,
+      charityOneValue: charityOneValueOld,
+      charityTwoValue: charityTwoValueOld
+    } = this.state;
+
     const tipValueNew = event;
-    const tipValueOld = this.state.tipValue;
     const diff = tipValueOld - tipValueNew;
 
-    const charityOneValueOld = this.state.charityOneValue;
-    const charityTwoValueOld = this.state.charityTwoValue;
     const charityOneValueNew = charityOneValueOld + diff / 2;
     const charityTwoValueNew = charityTwoValueOld + diff / 2;
 
@@ -103,15 +115,32 @@ class DonatePage extends Component {
   }
 
   handleSubmit(event) {
+    const {
+      donationValue,
+      charityOneValue,
+      charityTwoValue,
+      tipValue
+    } = this.state;
     // event.preventDefault();
-    // this.props.fetchRepInfo(this.state.value);
-    this.props.history.push('/');
+    this.props.getDonation({
+      donationValue,
+      charityOneValue,
+      charityTwoValue,
+      tipValue
+    });
+    this.props.history.push('/donate_result');
   }
 
   render() {
     return (
       <Form>
         <h2>Donate Dammit</h2>
+        <div className="Buttons" style={{ margin: 20 }}>
+          <Button onClick={e => this.handleDonationValue(1, e)}>$1</Button>
+          <Button onClick={e => this.handleDonationValue(5, e)}>$5</Button>
+          <Button onClick={e => this.handleDonationValue(10, e)}>$10</Button>
+          <h4>${this.state.donationValue}</h4>
+        </div>
         <h4>Charity 1</h4>
         <div style={wrapperStyle}>
           <Slider
@@ -120,7 +149,14 @@ class DonatePage extends Component {
             value={this.state.charityOneValue}
             onChange={this.handleChangeOne}
           />
-          <p>{this.state.charityOneValue}</p>
+          <p>
+            ${(
+              this.state.charityOneValue *
+              this.state.donationValue *
+              0.01
+            ).toFixed(2)}{' '}
+            - {this.state.charityOneValue}%
+          </p>
         </div>
         <h4>Charity 2</h4>
         <div style={wrapperStyle}>
@@ -130,7 +166,14 @@ class DonatePage extends Component {
             value={this.state.charityTwoValue}
             onChange={this.handleChangeTwo}
           />
-          <p>{this.state.charityTwoValue}</p>
+          <p>
+            ${(
+              this.state.charityTwoValue *
+              this.state.donationValue *
+              0.01
+            ).toFixed(2)}{' '}
+            - {this.state.charityTwoValue}%
+          </p>
         </div>
         <h4>Tip</h4>
         <div style={wrapperStyle}>
@@ -140,7 +183,12 @@ class DonatePage extends Component {
             value={this.state.tipValue}
             onChange={this.handleChangeTip}
           />
-          <p>{this.state.tipValue}</p>
+          <p>
+            ${(this.state.tipValue * this.state.donationValue * 0.01).toFixed(
+              2
+            )}{' '}
+            - {this.state.tipValue}%
+          </p>
         </div>
         <Button type="submit" onClick={this.handleSubmit} primary>
           Submit
