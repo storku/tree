@@ -9,12 +9,15 @@ import {
   START_H
 } from './constants';
 import { colorRect, colorCircle } from './graphicsCommon';
+import { mouseInput } from './input';
 import { levelOne } from './levels/levels';
 
 class Canvas extends Component {
   constructor(props) {
     super(props);
     this.levelGrid = [];
+
+    //this.updateAll = this.updateAll.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +36,8 @@ class Canvas extends Component {
       this.drawGrid(ctx);
       // const dataURL = canvas.toDataURL();
       // console.log(dataURL);
+
+      mouseInput(canvas, ctx);
     };
   }
 
