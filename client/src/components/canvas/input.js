@@ -1,9 +1,12 @@
-import { GRID_W, GRID_H } from './constants';
-import { colorText } from './graphicsCommon';
+import { GRID_W, GRID_H, GRID_GAP, START_W, START_H } from './constants';
+import { colorText, colorRect } from './graphicsCommon';
+
+let tileOverCol;
+let tileOverRow;
 
 export function mouseInput(canvas, ctx) {
   canvas.addEventListener('mousemove', e => mousemoved(e, canvas, ctx));
-  // document.addEventListener('mousedown', mouseclicked);
+  canvas.addEventListener('mousedown', e => mouseclicked(e, ctx));
 }
 
 function mousemoved(event, canvas, ctx) {
@@ -17,24 +20,32 @@ function mousemoved(event, canvas, ctx) {
   mouseX = event.clientX - rect.left - root.scrollLeft;
   mouseY = event.clientY - rect.top - root.scrollTop;
 
-  const tileOverCol = Math.floor(mouseX / GRID_W);
-  const tileOverRow = Math.floor(mouseY / GRID_H);
+  tileOverCol = Math.floor(mouseX / GRID_W);
+  tileOverRow = Math.floor(mouseY / GRID_H);
 
-  colorText(ctx, `${tileOverCol},${tileOverRow}`, mouseX, mouseY, 'white');
+  //colorText(ctx, `${tileOverCol},${tileOverRow}`, mouseX, mouseY, 'white');
   //tileOverIdx = tileCoordToIndex(tileOverCol, tileOverRow);
 }
 
-// function mouseclicked(event) {
-//   if (tileOverIdx < 0 || tileOverIdx >= this.levelGrid.length) {
-//     // invalid or off board
-//     return;
-//   }
-//
-//   if (selectedIdx != -1) {
-//     tileGrid[tileOverIdx] = tileGrid[selectedIdx]; // put the piece here (overwrite)
-//     tileGrid[selectedIdx] = NO_PIECE; // clear the spot where it was sitting
-//     selectedIdx = -1; // forget selection
-//   } else if (tileGrid[tileOverIdx] != NO_PIECE) {
-//     selectedIdx = tileOverIdx;
-//   }
-// }
+function mouseclicked(event, ctx) {
+  colorRect(
+    ctx,
+    GRID_W * tileOverCol,
+    GRID_H * tileOverRow,
+    GRID_W - GRID_GAP,
+    GRID_H - GRID_GAP,
+    'blue'
+  );
+  // if (tileOverIdx < 0 || tileOverIdx >= this.levelGrid.length) {
+  //   // invalid or off board
+  //   return;
+  // }
+  //
+  // if (selectedIdx != -1) {
+  //   tileGrid[tileOverIdx] = tileGrid[selectedIdx]; // put the piece here (overwrite)
+  //   tileGrid[selectedIdx] = NO_PIECE; // clear the spot where it was sitting
+  //   selectedIdx = -1; // forget selection
+  // } else if (tileGrid[tileOverIdx] != NO_PIECE) {
+  //   selectedIdx = tileOverIdx;
+  // }
+}

@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
-import {
-  GRID_W,
-  GRID_H,
-  GRID_GAP,
-  GRID_COLS,
-  GRID_ROWS,
-  START_W,
-  START_H
-} from './constants';
-import { colorRect, colorCircle } from './graphicsCommon';
+import { colorCircle } from './graphicsCommon';
 import { mouseInput } from './input';
 import { levelOne } from './levels/levels';
+import { drawGrid } from './garden';
 
 class Canvas extends Component {
   constructor(props) {
     super(props);
-    this.levelGrid = [];
+    this.state = {
+      levelGrid: []
+    };
 
     //this.updateAll = this.updateAll.bind(this);
   }
@@ -28,12 +22,14 @@ class Canvas extends Component {
     //React Router Dom does not call it!!!
     //Fix it!!!
     window.onload = () => {
+      const level = this.loadLevel(levelOne);
+      this.setState({
+        levelGrid: level
+      });
+
       colorCircle(ctx, 300, 300, 300, 'green');
 
-      this.levelGrid = this.loadLevel(levelOne);
-      console.log(this.levelGrid);
-
-      this.drawGrid(ctx);
+      drawGrid(ctx, this.state.levelGrid);
       // const dataURL = canvas.toDataURL();
       // console.log(dataURL);
 
@@ -43,43 +39,6 @@ class Canvas extends Component {
 
   loadLevel(whichLevel) {
     return [...whichLevel];
-  }
-
-  rowColToArrayIndex(col, row) {
-    return col + GRID_COLS * row;
-  }
-
-  drawGrid(ctx) {
-    for (let eachRow = 0; eachRow < GRID_COLS; eachRow++) {
-      for (let eachCol = 0; eachCol < GRID_ROWS; eachCol++) {
-        const arrayIndex = this.rowColToArrayIndex(eachCol, eachRow);
-
-        if (this.levelGrid[arrayIndex] === 0) {
-          colorRect(
-            ctx,
-            GRID_W * eachCol + START_W,
-            GRID_H * eachRow + START_H,
-            GRID_W - GRID_GAP,
-            GRID_H - GRID_GAP,
-            'gray'
-          );
-        } else if (this.levelGrid[arrayIndex] === 1) {
-          colorRect(
-            ctx,
-            GRID_W * eachCol + START_W,
-            GRID_H * eachRow + START_H,
-            GRID_W - GRID_GAP,
-            GRID_H - GRID_GAP,
-            'black'
-          );
-        }
-
-        // if(brickGrid[arrayIndex]) {
-        // 	colorRect(GRID_W*eachCol,GRID_H*eachRow,
-        // 		GRID_W-GRID_GAP,GRID_H-GRID_GAP, 'blue');
-        // }
-      }
-    }
   }
 
   render() {
