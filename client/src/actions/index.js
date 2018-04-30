@@ -7,3 +7,6 @@ export * from './searchTwitter';
 
 //get the donation
 export * from './getDonation';
+
+//get the images
+export * from './getImages';

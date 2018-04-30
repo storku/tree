@@ -15,6 +15,15 @@ import plant4File from '../../images/plant_4.png';
 import plant5File from '../../images/plant_5.png';
 import plant6File from '../../images/plant_6.png';
 
+// function importAll(r) {
+//   let images = {};
+//   r.keys().map((item, index) => {
+//     images[item.replace('../../', '')] = r(item);
+//   });
+//   return images;
+// }
+const images = require.context('../../images', true);
+
 export const plantPics = []; //note that plants start at 1 Not 0
 
 let picsToLoad = 0; //set automatically based on imageList in loadImages()
@@ -46,6 +55,12 @@ export function loadImages() {
     { plantType: PLANT_4, fileName: plant4File },
     { plantType: PLANT_5, fileName: plant5File },
     { plantType: PLANT_6, fileName: plant6File }
+
+    // { plantType: PLANT_1, fileName: '../../images/plant_1.png' },
+    // { plantType: PLANT_2, fileName: '../../images/plant_2.png' },
+    // { plantType: PLANT_3, fileName: '../../images/plant_3.png' },
+    // { plantType: PLANT_4, fileName: '../../images/plant_4.png' },
+    // { plantType: PLANT_5, fileName: '../../images/plant_5.png' }
   ];
 
   picsToLoad = imageList.length;

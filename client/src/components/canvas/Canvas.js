@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { colorCircle } from './graphicsCommon';
 import { mouseInput } from './input';
 import { levelTwo } from './levels/levels';
 import { drawGrid } from './garden';
-import { loadImages, finishedLoading, plantPics } from './imageLoading';
+//import { loadImages, finishedLoading, plantPics } from './imageLoading';
+import RenderImages from './RenderImages';
 
 class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      levelGrid: []
+      levelGrid: [],
+      ctxState: ''
     };
-
-    //this.updateAll = this.updateAll.bind(this);
   }
 
   componentDidMount() {
@@ -29,16 +30,18 @@ class Canvas extends Component {
       });
 
       colorCircle(ctx, 300, 300, 400, 'rgb(0, 128, 0, 0.5)');
-
       //load all the images
-      loadImages();
-      if (finishedLoading) {
+      //loadImages();
+      if (this.props.plantPics) {
         console.log('yep, we got it here.');
-        drawGrid(ctx, this.state.levelGrid, plantPics);
-        // const dataURL = canvas.toDataURL();
-        // console.log(dataURL);
+        drawGrid(ctx, this.state.levelGrid, this.props.plantPics);
       }
 
+      //print the canvas as 1 picture
+      // const dataURL = canvas.toDataURL();
+      // console.log(dataURL);
+
+      //enable clicking on canvas elements
       //mouseInput(canvas, ctx);
     };
   }
@@ -47,19 +50,18 @@ class Canvas extends Component {
     return [...whichLevel];
   }
 
-  renderImages() {}
-
   render() {
     return (
       <div>
         <canvas ref="canvas" width={800} height={800} />
+        <RenderImages canvas={this.refs.canvas} />
       </div>
     );
   }
 }
 
-function mapStateToProps({ searchTwitter }) {
-  return { searchTwitter };
+function mapStateToProps({ getImages }) {
+  return { plantPics: getImages };
 }
 
-export default Canvas;
+export default connect(mapStateToProps)(Canvas);
