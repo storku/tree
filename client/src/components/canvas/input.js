@@ -14,11 +14,15 @@ function mousemoved(event, canvas, ctx) {
   let mouseY = 0;
 
   const rect = canvas.getBoundingClientRect();
-  const root = document.documentElement;
+  //commented code below is used to adjust scolling but doesn't work!
+  // const root = document.documentElement;
 
   // account for the margins, canvas position on page, scroll amount, etc.
-  mouseX = event.clientX - rect.left - root.scrollLeft;
-  mouseY = event.clientY - rect.top - root.scrollTop;
+  // mouseX = event.clientX - rect.left - root.scrollLeft;
+  // mouseY = event.clientY - rect.top - root.scrollTop;
+
+  mouseX = event.clientX - rect.left;
+  mouseY = event.clientY - rect.top;
 
   tileOverCol = Math.floor(mouseX / GRID_W);
   tileOverRow = Math.floor(mouseY / GRID_H);

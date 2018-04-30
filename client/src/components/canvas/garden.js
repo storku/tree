@@ -9,28 +9,44 @@ import {
 } from './constants';
 import { colorRect } from './graphicsCommon';
 
-export function drawGrid(ctx, levelGrid) {
+export function drawGrid(ctx, levelGrid, plantPics) {
   for (let eachRow = 0; eachRow < GRID_COLS; eachRow++) {
     for (let eachCol = 0; eachCol < GRID_ROWS; eachCol++) {
       const arrayIndex = rowColToArrayIndex(eachCol, eachRow);
-
-      if (levelGrid[arrayIndex] === 0) {
-        colorRect(
-          ctx,
+      const numberAtArrayIndex = levelGrid[arrayIndex];
+      if (numberAtArrayIndex === 0) {
+        // colorRect(
+        //   ctx,
+        //   GRID_W * eachCol + START_W,
+        //   GRID_H * eachRow + START_H,
+        //   GRID_W - GRID_GAP,
+        //   GRID_H - GRID_GAP,
+        //   'gray'
+        // );
+      } else if (
+        numberAtArrayIndex === 1 ||
+        numberAtArrayIndex === 2 ||
+        numberAtArrayIndex === 3 ||
+        numberAtArrayIndex === 4 ||
+        numberAtArrayIndex === 5 ||
+        numberAtArrayIndex === 6
+      ) {
+        // colorRect(
+        //   ctx,
+        //   GRID_W * eachCol + START_W,
+        //   GRID_H * eachRow + START_H,
+        //   GRID_W - GRID_GAP,
+        //   GRID_H - GRID_GAP,
+        //   'black'
+        // );
+        const plantImg = plantPics[numberAtArrayIndex];
+        //console.log(plantImg);
+        ctx.drawImage(
+          plantImg,
           GRID_W * eachCol + START_W,
           GRID_H * eachRow + START_H,
-          GRID_W - GRID_GAP,
-          GRID_H - GRID_GAP,
-          'gray'
-        );
-      } else if (levelGrid[arrayIndex] === 1) {
-        colorRect(
-          ctx,
-          GRID_W * eachCol + START_W,
-          GRID_H * eachRow + START_H,
-          GRID_W - GRID_GAP,
-          GRID_H - GRID_GAP,
-          'black'
+          GRID_W,
+          GRID_H
         );
       }
 
