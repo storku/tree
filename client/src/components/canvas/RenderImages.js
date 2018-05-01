@@ -24,12 +24,12 @@ class RenderImages extends Component {
   constructor() {
     super();
     this.state = {
-      plant1Render: <img src={plant1File} />,
-      plant2Render: <img src={plant2File} />,
-      plant3Render: <img src={plant3File} />,
-      plant4Render: <img src={plant4File} />,
-      plant5Render: <img src={plant5File} />,
-      plant6Render: <img src={plant6File} />
+      plant1Render: <img src={plant1File} alt={PLANT_1} />,
+      plant2Render: <img src={plant2File} alt={PLANT_2} />,
+      plant3Render: <img src={plant3File} alt={PLANT_3} />,
+      plant4Render: <img src={plant4File} alt={PLANT_4} />,
+      plant5Render: <img src={plant5File} alt={PLANT_5} />,
+      plant6Render: <img src={plant6File} alt={PLANT_6} />
     };
   }
   renderImages() {

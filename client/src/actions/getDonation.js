@@ -1,4 +1,4 @@
-import axios from 'axios'; //used to make AJAX requests
+//import axios from 'axios'; //used to make AJAX requests
 import { GET_DONATION } from './types';
 
 export const getDonation = donations => async dispatch => {

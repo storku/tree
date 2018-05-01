@@ -1,13 +1,13 @@
 import {
   GRID_W,
   GRID_H,
-  GRID_GAP,
   GRID_COLS,
   GRID_ROWS,
   START_W,
   START_H
 } from './constants';
-import { colorRect } from './graphicsCommon';
+//import { colorRect } from './graphicsCommon';
+//import { GRID_GAP } from './constants';
 
 export function drawGrid(ctx, levelGrid, plantPics) {
   for (let eachRow = 0; eachRow < GRID_COLS; eachRow++) {

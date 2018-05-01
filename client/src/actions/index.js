@@ -10,3 +10,6 @@ export * from './getDonation';
 
 //get the images
 export * from './getImages';
+
+//get the canvas context
+export * from './getCanvasContext';
