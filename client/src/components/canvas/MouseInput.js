@@ -1,15 +1,14 @@
 //used to use old/input.js, but switched to this
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GRID_W, GRID_H, GRID_GAP, START_W, START_H } from './constants';
-import { colorText, colorRect } from './graphicsCommon';
+import { GRID_W, GRID_H } from './constants';
+// import { GRID_GAP, START_W, START_H } from './constants';
+// import { colorText, colorRect } from './graphicsCommon';
 
 class MouseInput extends Component {
   mousemoved(event, canvas, ctx) {
     let mouseX = 0;
     let mouseY = 0;
-    this.tileOverCol;
-    this.tileOverRow;
 
     const rect = canvas.getBoundingClientRect();
     //commented code below is used to adjust scolling but doesn't work!

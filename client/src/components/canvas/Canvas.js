@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { colorCircle } from './graphicsCommon';
-// import { mouseInput } from './input';
 import { levelTwo } from './levels/levels';
 import { drawGrid } from './garden';
 import RenderImages from './RenderImages';
@@ -38,9 +37,6 @@ class Canvas extends Component {
       //print the canvas as 1 picture
       // const dataURL = canvas.toDataURL();
       // console.log(dataURL);
-
-      //enable clicking on canvas elements
-      // mouseInput(this.canvas, this.ctx);
     };
   }
 
