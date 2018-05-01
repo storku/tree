@@ -13,3 +13,6 @@ export * from './getImages';
 
 //get the canvas context
 export * from './getCanvasContext';
+
+//get mouse coordinates
+export * from './getMouseCoords';

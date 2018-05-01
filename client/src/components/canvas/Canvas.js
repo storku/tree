@@ -5,12 +5,36 @@ import { colorCircle } from './graphicsCommon';
 import { levelTwo } from './levels/levels';
 import { drawGrid } from './garden';
 import RenderImages from './RenderImages';
-import MouseInput from './MouseInput';
+import ClickDraw from './ClickDraw';
 
 class Canvas extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = {
+      x: 0,
+      y: 0
+    };
+
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  loadLevel(whichLevel) {
+    return [...whichLevel];
+  }
+
+  handleMouseMove(e) {
+    //console.log(e);
+    const rect = this.canvas.getBoundingClientRect();
+    this.setState({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  }
+
+  handleClick(e) {
+    const { x, y } = this.state;
+    this.props.getMouseCoords({ x, y });
+    //only needs to pass canvas and ctx when Im rendering something new???
+    this.props.getCanvasContext({ canvas: this.canvas, ctx: this.ctx });
   }
 
   componentDidMount() {
@@ -19,7 +43,8 @@ class Canvas extends Component {
     this.ctx = this.canvas.getContext('2d');
 
     //pass the canvas and ctx to the action creator
-    this.props.getCanvasContext({ canvas: this.canvas, ctx: this.ctx });
+    //this.props.getCanvasContext({ canvas: this.canvas, ctx: this.ctx });
+
     //Don't use window.onload because Link tag from
     //React Router Dom does not call it!!!
     //Fix it!!!
@@ -40,16 +65,18 @@ class Canvas extends Component {
     };
   }
 
-  loadLevel(whichLevel) {
-    return [...whichLevel];
-  }
-
   render() {
     return (
       <div>
-        <canvas ref="canvas" width={800} height={800} />
+        <canvas
+          ref="canvas"
+          width={800}
+          height={800}
+          onMouseMove={this.handleMouseMove}
+          onClick={this.handleClick}
+        />
         <RenderImages />
-        <MouseInput context={this.ctx} />
+        <ClickDraw />
       </div>
     );
   }

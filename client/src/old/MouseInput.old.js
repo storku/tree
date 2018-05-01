@@ -1,4 +1,8 @@
+//this file become ClickDraw.js !!!!
+
 //used to use old/input.js, but switched to this
+//A better way might be to use React synthetic event onMouseMove to track mouse movements
+//Check this: https://stackoverflow.com/questions/42182481/getting-mouse-coordinates-in-react
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GRID_W, GRID_H } from './constants';
@@ -20,6 +24,7 @@ class MouseInput extends Component {
 
     mouseX = event.clientX - rect.left;
     mouseY = event.clientY - rect.top;
+    console.log(mouseX, mouseY);
 
     this.tileOverCol = Math.floor(mouseX / GRID_W);
     this.tileOverRow = Math.floor(mouseY / GRID_H);
@@ -52,8 +57,6 @@ class MouseInput extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.getCanvasContext);
-    console.log(this.props.getImages);
     if (this.props.getCanvasContext) {
       const { canvas, ctx } = this.props.getCanvasContext;
 
