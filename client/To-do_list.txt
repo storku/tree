@@ -1,0 +1,2 @@
+In actions/getImages, make sure all images are loaded (Promise.all?)
+  then fire the dispatch.

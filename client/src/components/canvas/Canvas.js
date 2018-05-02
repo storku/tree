@@ -11,6 +11,8 @@ class Canvas extends Component {
   constructor(props) {
     super(props);
 
+    this.canvasRef = React.createRef();
+
     this.state = {
       x: 0,
       y: 0
@@ -38,9 +40,11 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
-    this.canvas = this.refs.canvas;
+    //this.canvas = this.refs.canvas;
     // const ctx = canvas.getContext('2d');
-    this.ctx = this.canvas.getContext('2d');
+
+    this.canvas = this.canvasRef.current;
+    this.ctx = this.canvasRef.current.getContext('2d');
 
     //pass the canvas and ctx to the action creator
     //this.props.getCanvasContext({ canvas: this.canvas, ctx: this.ctx });
@@ -69,7 +73,7 @@ class Canvas extends Component {
     return (
       <div>
         <canvas
-          ref="canvas"
+          ref={this.canvasRef}
           width={800}
           height={800}
           onMouseMove={this.handleMouseMove}
