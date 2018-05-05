@@ -16,3 +16,6 @@ export * from './getCanvasContext';
 
 //get mouse coordinates
 export * from './getMouseCoords';
+
+//activate tools
+export * from './activateTools';

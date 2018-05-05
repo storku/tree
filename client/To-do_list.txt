@@ -1,2 +1,5 @@
-In actions/getImages, make sure all images are loaded (Promise.all?)
+actions/getImages.js - make sure all images are loaded (Promise.all?)
   then fire the dispatch.
+
+canvas/Canvas.js - move the <canvas> element to another file/component
+  with forwarding refs: https://reactjs.org/docs/forwarding-refs.html

@@ -1,3 +1,15 @@
 .SearchPage {
   margin: 1rem;
 }
+
+.CanvasPage {
+  position: relative;
+}
+
+.WateringCan {
+  overflow: hidden;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  margin-left: 80%;
+}

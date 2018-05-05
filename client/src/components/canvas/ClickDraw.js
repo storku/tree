@@ -11,8 +11,15 @@ class ClickDraw extends Component {
     const tileOverRow = Math.floor(y / GRID_H);
     console.log('tiles:', tileOverCol, tileOverRow);
 
+    const { getImages, currentTools } = this.props;
+    //if using the watering can, change the image
+    let image = getImages[2];
+    if (currentTools === 'Watering_Can') {
+      image = getImages[4];
+    }
+
     ctx.drawImage(
-      this.props.getImages[2],
+      image,
       GRID_W * tileOverCol,
       GRID_H * tileOverRow,
       GRID_W,
@@ -20,23 +27,31 @@ class ClickDraw extends Component {
     );
   }
 
-  componentDidUpdate() {
-    //respond to a click
-    if (this.props.getMouseCoords) {
-      const { canvas, ctx } = this.props.getCanvasContext;
-      const { x, y } = this.props.getMouseCoords;
+  componentDidUpdate(prevProps) {
+    const { getMouseCoords, currentTools, getCanvasContext } = this.props;
+    //respond to a click, if getMouseCoords (aka click) exist and
+    //currentTools did NOT change then we draw an image
+    if (getMouseCoords && prevProps.currentTools === currentTools) {
+      const { canvas, ctx } = getCanvasContext;
+      const { x, y } = getMouseCoords;
+
       this.clickDraw(canvas, ctx, x, y);
     }
   }
 
   render() {
     console.log('rendered again');
-    return <div />;
+    return null;
   }
 }
 
-function mapStateToProps({ getCanvasContext, getImages, getMouseCoords }) {
-  return { getCanvasContext, getImages, getMouseCoords };
+function mapStateToProps({
+  getCanvasContext,
+  getImages,
+  getMouseCoords,
+  currentTools
+}) {
+  return { getCanvasContext, getImages, getMouseCoords, currentTools };
 }
 
 export default connect(mapStateToProps)(ClickDraw);

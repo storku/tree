@@ -4,6 +4,7 @@ import getDonationReducer from './getDonationReducer';
 import getImagesReducer from './getImagesReducer';
 import getCanvasContextReducer from './getCanvasContextReducer';
 import getMouseCoordsReducer from './getMouseCoordsReducer';
+import activateToolsReducer from './activateToolsReducer';
 
 //combine all the reducers here
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   getDonation: getDonationReducer,
   getImages: getImagesReducer,
   getCanvasContext: getCanvasContextReducer,
-  getMouseCoords: getMouseCoordsReducer
+  getMouseCoords: getMouseCoordsReducer,
+  currentTools: activateToolsReducer
 });
