@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { colorCircle } from './graphicsCommon';
+import { colorRect } from './graphicsCommon';
 import { levelTwo } from './levels/levels';
 import { drawGrid } from './garden';
 import RenderImages from './RenderImages';
@@ -15,6 +15,8 @@ class Canvas extends Component {
     this.canvasRef = React.createRef();
 
     this.state = {
+      canvasWidth: window.innerWidth,
+      canvasHeight: window.innerHeight,
       x: 0,
       y: 0
     };
@@ -28,7 +30,6 @@ class Canvas extends Component {
   }
 
   handleMouseMove(e) {
-    //console.log(e);
     const rect = this.canvas.getBoundingClientRect();
     this.setState({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   }
@@ -41,9 +42,6 @@ class Canvas extends Component {
   }
 
   componentDidMount() {
-    //this.canvas = this.refs.canvas;
-    // const ctx = canvas.getContext('2d');
-
     this.canvas = this.canvasRef.current;
     this.ctx = this.canvas.getContext('2d');
 
@@ -54,9 +52,19 @@ class Canvas extends Component {
     //React Router Dom does not call it!!!
     //Fix it!!!
     window.onload = () => {
+      // this.canvas.width = this.canvas.offsetWidth;
+      // this.canvas.height = this.canvas.offsetHeight;
+
       const level = this.loadLevel(levelTwo);
 
-      colorCircle(this.ctx, 300, 300, 400, 'rgb(0, 128, 0, 0.5)');
+      colorRect(
+        this.ctx,
+        0,
+        0,
+        this.state.canvasWidth,
+        this.state.canvasHeight,
+        'rgb(0, 128, 0, 0.5)'
+      );
 
       //in actions/getImages, use Promise.all or someting similar
       //to get all images to load then dispatch the action!
@@ -75,8 +83,8 @@ class Canvas extends Component {
       <div className="CanvasPage">
         <canvas
           ref={this.canvasRef}
-          width={800}
-          height={800}
+          width={this.state.canvasWidth}
+          height={this.state.canvasHeight}
           onMouseMove={this.handleMouseMove}
           onClick={this.handleClick}
         />

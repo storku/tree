@@ -31,18 +31,16 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
-        <Form>
-          <Input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <Button type="submit" onClick={this.handleSubmit} primary>
-            Submit
-          </Button>
-        </Form>
-      </div>
+      <Form>
+        <Input
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <Button type="submit" onClick={this.handleSubmit} primary>
+          Submit
+        </Button>
+      </Form>
     );
   }
 }

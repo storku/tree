@@ -9,7 +9,10 @@
 .WateringCan {
   overflow: hidden;
   position: absolute;
-  top: 10%;
-  width: 100%;
-  margin-left: 80%;
+  top: 1%;
+  left: 80%;
+  width: 240px;
+  background: rgba(0, 191, 255, 0.7);
+  border: 3px solid #ffffff;
+  border-radius: 10px;
 }

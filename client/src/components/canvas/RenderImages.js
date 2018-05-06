@@ -1,3 +1,4 @@
+//render the images for Canvas
 //this is needed to make it work on Chrome :(
 //render the image tags and put onto the page as invisible
 import React, { Component } from 'react';
@@ -67,7 +68,7 @@ class RenderImages extends Component {
   }
 
   render() {
-    return <div>{this.renderImages()}</div>;
+    return <React.Fragment>{this.renderImages()}</React.Fragment>;
   }
 }
 
