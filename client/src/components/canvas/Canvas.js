@@ -81,6 +81,7 @@ class Canvas extends Component {
   render() {
     return (
       <div className="CanvasPage">
+        {this.props.children}
         <canvas
           ref={this.canvasRef}
           width={this.state.canvasWidth}

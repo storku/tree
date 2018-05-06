@@ -6,6 +6,11 @@
   position: relative;
 }
 
+.searchSection {
+  position: absolute;
+  left: 5px;
+}
+
 .WateringCan {
   overflow: hidden;
   position: absolute;

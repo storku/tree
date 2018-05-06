@@ -9,9 +9,12 @@ class FrontPage extends Component {
     console.log(this.props.searchTwitter);
     return (
       <div>
-        <SearchBar />
-        {this.props.searchTwitter && <TwitterUserInfo />}
-        <Canvas />
+        <Canvas>
+          <div className="searchSection">
+            <SearchBar />
+            {this.props.searchTwitter && <TwitterUserInfo />}
+          </div>
+        </Canvas>
       </div>
     );
   }
