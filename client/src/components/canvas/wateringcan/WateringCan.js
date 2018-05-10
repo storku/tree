@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
-import wateringCan from '../../../images/plant_8.png';
-import placeHolder from '../../../images/plant_7.png';
+import { BACKGROUND_IMAGES } from '../constants';
+const wateringCan = BACKGROUND_IMAGES.plant8File;
+const placeHolder = BACKGROUND_IMAGES.plant7File;
 
 class WateringCan extends Component {
   constructor(props) {
