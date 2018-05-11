@@ -16,7 +16,18 @@ class ClickDraw extends Component {
     let image = getImages[2];
     if (currentTools === 'Watering_Can') {
       image = getImages[4];
+    } else if (currentTools === 'Bunny') {
+      image = getImages[3];
+    } else if (currentTools === 'Christmas_Penguin') {
+      image = getImages[2];
+    } else if (currentTools === 'Corgi') {
+      image = getImages[1];
+    } else if (currentTools === 'Derpy_Mushroom') {
+      image = getImages[5];
     }
+    // } else if (currentTools === 'Dragon') {
+    //   image = getImages[3]
+    // }
 
     ctx.drawImage(
       image,

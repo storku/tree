@@ -4,7 +4,6 @@ import Tool from './Tool';
 
 import { BACKGROUND_IMAGES, MAIN_IMAGES } from '../constants';
 const wateringCan = BACKGROUND_IMAGES.plant8File;
-const placeHolder = BACKGROUND_IMAGES.plant7File;
 
 const bunnyFile = MAIN_IMAGES.bunnyFile;
 const christmasPenguinFile = MAIN_IMAGES.christmasPenguinFile;
@@ -13,12 +12,19 @@ const derpyMushroomFile = MAIN_IMAGES.derpyMushroomFile;
 const dragonFile = MAIN_IMAGES.dragonFile;
 
 class ToolBox extends Component {
+  currentToolsLine() {
+    if (Object.keys(this.props.currentTools).length === 0) {
+      return;
+    } else {
+      return <p>Currently Using {this.props.currentTools}</p>;
+    }
+  }
+
   render() {
-    const { currentTools } = this.props;
-    console.log('rendered toolbox');
     return (
-      <div className="WateringCan">
-        {currentTools === 'Watering_Can' && <h4>Using Watering Can</h4>}
+      <div className="ToolBox">
+        <h4>Tool Box</h4>
+        {this.currentToolsLine()}
         <table>
           <tbody>
             <tr>

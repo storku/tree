@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
 class Tool extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.handleChooseTool = this.handleChooseTool.bind(this);
   }
 
   handleChooseTool() {
-    const tool = this.props.activateTools(this.props.alt);
+    this.props.activateTools(this.props.alt);
   }
 
   render() {
