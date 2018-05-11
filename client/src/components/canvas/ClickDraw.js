@@ -40,7 +40,6 @@ class ClickDraw extends Component {
   }
 
   render() {
-    console.log('rendered again');
     return null;
   }
 }

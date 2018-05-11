@@ -5,11 +5,13 @@ import * as actions from '../../../actions';
 import { MAIN_IMAGES } from '../constants';
 
 class Plant extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     state = {
-      type: ''
+      type: '',
+      width: 0,
+      height: 0
     };
   }
 

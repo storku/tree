@@ -6,7 +6,7 @@ import { levelTwo } from './levels/levels';
 import { drawGrid } from './garden';
 import RenderImages from './RenderImages';
 import ClickDraw from './ClickDraw';
-import WateringCan from './wateringcan/WateringCan';
+import ToolBox from './toolBox/ToolBox';
 
 class Canvas extends Component {
   constructor(props) {
@@ -91,7 +91,7 @@ class Canvas extends Component {
         />
         <RenderImages />
         <ClickDraw />
-        <WateringCan />
+        <ToolBox />
       </div>
     );
   }
