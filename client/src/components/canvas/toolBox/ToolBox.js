@@ -3,18 +3,17 @@ import { connect } from 'react-redux';
 import Tool from './Tool';
 
 import { BACKGROUND_IMAGES, MAIN_IMAGES } from '../constants';
+
 const wateringCan = BACKGROUND_IMAGES.plant8File;
 
-const bunnyFile = MAIN_IMAGES.bunnyFile;
-const christmasPenguinFile = MAIN_IMAGES.christmasPenguinFile;
-const corgiFile = MAIN_IMAGES.corgiFile;
-const derpyMushroomFile = MAIN_IMAGES.derpyMushroomFile;
-const dragonFile = MAIN_IMAGES.dragonFile;
+const {
+  bunnyFile, christmasPenguinFile, corgiFile, derpyMushroomFile, dragonFile,
+} = MAIN_IMAGES;
 
 class ToolBox extends Component {
   currentToolsLine() {
     if (Object.keys(this.props.currentTools).length === 0) {
-      return;
+
     } else {
       return <p>Currently Using {this.props.currentTools}</p>;
     }
