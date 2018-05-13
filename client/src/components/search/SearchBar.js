@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
-import { withRouter } from 'react-router-dom'; //required to use this.props.history.push
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom'; // required to use this.props.history.push
 import { Form, Input, Button } from 'semantic-ui-react';
+import * as actions from '../../actions';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -22,11 +23,11 @@ class SearchBar extends Component {
     });
   }
 
-  handleSubmit(event) {
-    //event.preventDefault();
+  handleSubmit() {
+    // event.preventDefault();
     const searchValue = this.state.value;
     this.props.searchTwitter(searchValue);
-    //this.props.history.push(`/search/${searchValue}`);
+    // this.props.history.push(`/search/${searchValue}`);
   }
 
   render() {
@@ -44,5 +45,9 @@ class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchTwitter: PropTypes.func.isRequired
+};
 
 export default withRouter(connect(null, actions)(SearchBar));

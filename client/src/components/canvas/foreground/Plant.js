@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 
-import { MAIN_IMAGES } from '../constants';
+// import { MAIN_IMAGES } from '../constants';
 
 class Plant extends Component {
   constructor() {

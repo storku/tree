@@ -33,7 +33,7 @@ class ClickDraw extends Component {
     } else if (currentTools === 'Bunny') {
       image = getImages[3];
     } else if (currentTools === 'Christmas_Penguin') {
-      image = getImages[2];
+      image = getImages[5];
     } else if (currentTools === 'Corgi') {
       image = getImages[1];
     } else if (currentTools === 'Derpy_Mushroom') {

@@ -3,7 +3,7 @@
 // render the image tags and put onto the page as invisible
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import * as actions from '../../actions';
+import PropTypes from 'prop-types';
 import * as actions from '../../actions/';
 
 import {
@@ -37,6 +37,20 @@ class RenderImages extends Component {
       plant6Render: <img src={plant6File} alt={PLANT_6} />
     };
   }
+
+  componentDidMount() {
+    const imageURLs = [
+      null,
+      plant1File,
+      plant2File,
+      plant3File,
+      plant4File,
+      plant5File,
+      plant6File
+    ];
+    this.props.getImages(imageURLs);
+  }
+
   renderImages() {
     const {
       plant1Render,
@@ -58,22 +72,13 @@ class RenderImages extends Component {
     );
   }
 
-  componentDidMount() {
-    const imageURLs = [
-      null,
-      plant1File,
-      plant2File,
-      plant3File,
-      plant4File,
-      plant5File,
-      plant6File
-    ];
-    this.props.getImages(imageURLs);
-  }
-
   render() {
     return <React.Fragment>{this.renderImages()}</React.Fragment>;
   }
 }
+
+RenderImages.propTypes = {
+  getImages: PropTypes.func.isRequired
+};
 
 export default connect(null, actions)(RenderImages);

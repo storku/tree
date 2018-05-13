@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Tool from './Tool';
 
 import { BACKGROUND_IMAGES, MAIN_IMAGES } from '../constants';
@@ -7,16 +8,19 @@ import { BACKGROUND_IMAGES, MAIN_IMAGES } from '../constants';
 const wateringCan = BACKGROUND_IMAGES.plant8File;
 
 const {
-  bunnyFile, christmasPenguinFile, corgiFile, derpyMushroomFile, dragonFile,
+  bunnyFile,
+  christmasPenguinFile,
+  corgiFile,
+  derpyMushroomFile,
+  dragonFile
 } = MAIN_IMAGES;
 
 class ToolBox extends Component {
   currentToolsLine() {
     if (Object.keys(this.props.currentTools).length === 0) {
-
-    } else {
-      return <p>Currently Using {this.props.currentTools}</p>;
+      return null;
     }
+    return <p>Currently Using {this.props.currentTools}</p>;
   }
 
   render() {
@@ -44,6 +48,10 @@ class ToolBox extends Component {
     );
   }
 }
+
+ToolBox.propTypes = {
+  currentTools: PropTypes.string.isRequired
+};
 
 function mapStateToProps({ currentTools }) {
   return { currentTools };

@@ -1,4 +1,4 @@
-import { GET_DONATION } from '../actions/types'; //import the action type
+import { GET_DONATION } from '../actions/types'; // import the action type
 
 export default function(state = '', action) {
   switch (action.type) {

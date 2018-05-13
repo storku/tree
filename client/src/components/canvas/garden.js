@@ -6,8 +6,12 @@ import {
   START_W,
   START_H
 } from './constants';
-//import { colorRect } from './graphicsCommon';
-//import { GRID_GAP } from './constants';
+// import { colorRect } from './graphicsCommon';
+// import { GRID_GAP } from './constants';
+
+function rowColToArrayIndex(col, row) {
+  return col + GRID_COLS * row;
+}
 
 export function drawGrid(ctx, levelGrid, plantPics) {
   for (let eachRow = 0; eachRow < GRID_COLS; eachRow++) {
@@ -40,7 +44,7 @@ export function drawGrid(ctx, levelGrid, plantPics) {
         //   'black'
         // );
         const plantImg = plantPics[numberAtArrayIndex];
-        //console.log(plantImg);
+        // console.log(plantImg);
         ctx.drawImage(
           plantImg,
           GRID_W * eachCol + START_W,
@@ -56,8 +60,4 @@ export function drawGrid(ctx, levelGrid, plantPics) {
       // }
     }
   }
-}
-
-function rowColToArrayIndex(col, row) {
-  return col + GRID_COLS * row;
 }

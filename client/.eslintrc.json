@@ -4,6 +4,11 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": ["error", { "singleQuote": true }],
     "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-underscore-dangle": [
+      "error",
+      { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }
+    ],
     "import/prefer-default-export": "off",
     "no-undef": "off"
   }

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import SearchBar from '../search/SearchBar';
+import PropTypes from 'prop-types';
 import { Icon, Button } from 'semantic-ui-react';
+import SearchBar from '../search/SearchBar';
 
-class SearchPage extends Component {
+class SearchPage extends PureComponent {
   render() {
     const username = this.props.match.params.id;
     return (
@@ -27,6 +28,11 @@ class SearchPage extends Component {
     );
   }
 }
+
+SearchPage.propTypes = {
+  match: PropTypes.shape({ params: PropTypes.object, id: PropTypes.number })
+    .isRequired
+};
 
 function mapStateToProps({ repInfo }) {
   return { repInfo };

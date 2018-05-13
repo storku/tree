@@ -1,4 +1,5 @@
-//grid
+/* eslint global-require: "off" */
+// grid
 export const GRID_W = 50;
 export const GRID_H = 50;
 export const GRID_GAP = 2;
@@ -7,7 +8,7 @@ export const GRID_ROWS = 10;
 export const START_W = 50;
 export const START_H = 50;
 
-//fake plants
+// fake plants
 export const PLANT_1 = 1;
 export const PLANT_2 = 2;
 export const PLANT_3 = 3;
@@ -26,7 +27,7 @@ export const BACKGROUND_IMAGES = {
   plant8File: require('../../images/plant_8.png')
 };
 
-//real plants
+// real plants
 export const BUNNY_1 = 1;
 export const CHRISTMAS_PENGUIN_2 = 2;
 export const CORGI_3 = 3;

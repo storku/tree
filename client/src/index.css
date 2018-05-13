@@ -1,8 +1,8 @@
 /*62.5% of 16px (default browser font size) is 10px,
 which is used to calculate all the rem values below*/
-html {
+/* html {
   font-size: 62.5%;
-}
+}*/
 
 body {
   margin: 0;

@@ -10,6 +10,10 @@ import ClickDraw from './ClickDraw';
 import ToolBox from './toolBox/ToolBox';
 
 class Canvas extends Component {
+  static loadLevel(whichLevel) {
+    return [...whichLevel];
+  }
+
   constructor(props) {
     super(props);
 
@@ -40,7 +44,7 @@ class Canvas extends Component {
       // this.canvas.width = this.canvas.offsetWidth;
       // this.canvas.height = this.canvas.offsetHeight;
 
-      const level = this.loadLevel(levelTwo);
+      const level = Canvas.loadLevel(levelTwo);
 
       colorRect(
         this.ctx,
@@ -63,10 +67,6 @@ class Canvas extends Component {
     };
   }
 
-  loadLevel(whichLevel) {
-    return [...whichLevel];
-  }
-
   handleMouseMove(e) {
     const rect = this.canvas.getBoundingClientRect();
     this.setState({ x: e.clientX - rect.left, y: e.clientY - rect.top });
@@ -82,6 +82,7 @@ class Canvas extends Component {
   render() {
     return (
       <div className="CanvasPage">
+        {/* this.props.children is used by FrontPage.js to pass in Components */}
         {this.props.children}
         <canvas
           ref={this.canvasRef}
@@ -101,7 +102,8 @@ class Canvas extends Component {
 Canvas.propTypes = {
   getMouseCoords: PropTypes.func.isRequired,
   getCanvasContext: PropTypes.func.isRequired,
-  plantPics: PropTypes.arrayOf(PropTypes.object).isRequired
+  plantPics: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.element.isRequired
 };
 
 function mapStateToProps({ getImages }) {
