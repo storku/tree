@@ -100,8 +100,8 @@ class Canvas extends Component {
 
 Canvas.propTypes = {
   getMouseCoords: PropTypes.func.isRequired,
-  getCanvasContext: PropTypes.func.isRequired
-  // plantPics: PropTypes.arrayOf(PropTypes.object).isRequired
+  getCanvasContext: PropTypes.func.isRequired,
+  plantPics: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 function mapStateToProps({ getImages }) {

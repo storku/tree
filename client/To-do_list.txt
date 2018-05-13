@@ -9,3 +9,7 @@ header/Header.js - Login and Logout is broken
 .eslintrc.js - Turned off eslint for import/prefer-default-export to prevent
   action creators from making that error. Fixing that error will break the
   action creators, especially getCanvasContext and getMouseCoords
+
+.eslintrc.js - Turned off eslint for no-undef (https://eslint.org/docs/rules/no-undef)
+  to prevent certain environmental variables from causing error. Need to add
+  env to config to fix error but env causes Eslint to crash.

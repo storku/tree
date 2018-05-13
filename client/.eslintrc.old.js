@@ -1,9 +1,0 @@
-module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended'],
-  rules: {
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    'prettier/prettier': ['error', { singleQuote: true }],
-    'prefer-destructuring': ['error', { object: true, array: false }],
-    'import/prefer-default-export': 'off'
-  }
-};
