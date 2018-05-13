@@ -1,4 +1,4 @@
-//import axios from 'axios'; //used to make AJAX requests
+// import axios from 'axios'; //used to make AJAX requests
 import { GET_DONATION } from './types';
 
 export const getDonation = donations => async dispatch => {
@@ -26,7 +26,7 @@ export const getDonation = donations => async dispatch => {
     name: 'Charity 2',
     value: trueCharityTwoValue
   };
-  filteredDonations['Tip'] = {
+  filteredDonations.Tip = {
     name: 'Tip',
     value: trueTipValue
   };

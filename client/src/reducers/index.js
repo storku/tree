@@ -6,7 +6,7 @@ import getCanvasContextReducer from './getCanvasContextReducer';
 import getMouseCoordsReducer from './getMouseCoordsReducer';
 import activateToolsReducer from './activateToolsReducer';
 
-//combine all the reducers here
+// combine all the reducers here
 export default combineReducers({
   searchTwitter: searchTwitterReducer,
   getDonation: getDonationReducer,

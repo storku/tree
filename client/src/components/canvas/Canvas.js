@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../../actions';
 import { colorRect } from './graphicsCommon';
 import { levelTwo } from './levels/levels';
@@ -18,27 +19,11 @@ class Canvas extends Component {
       canvasWidth: window.innerWidth,
       canvasHeight: window.innerHeight,
       x: 0,
-      y: 0,
+      y: 0
     };
 
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  loadLevel(whichLevel) {
-    return [...whichLevel];
-  }
-
-  handleMouseMove(e) {
-    const rect = this.canvas.getBoundingClientRect();
-    this.setState({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }
-
-  handleClick() {
-    const { x, y } = this.state;
-    this.props.getMouseCoords({ x, y });
-    // only needs to pass canvas and ctx when Im rendering something new???
-    this.props.getCanvasContext({ canvas: this.canvas, ctx: this.ctx });
   }
 
   componentDidMount() {
@@ -63,7 +48,7 @@ class Canvas extends Component {
         0,
         this.state.canvasWidth,
         this.state.canvasHeight,
-        'rgb(0, 128, 0, 0.5)',
+        'rgb(0, 128, 0, 0.5)'
       );
 
       // in actions/getImages, use Promise.all or someting similar
@@ -76,6 +61,22 @@ class Canvas extends Component {
       // const dataURL = canvas.toDataURL();
       // console.log(dataURL);
     };
+  }
+
+  loadLevel(whichLevel) {
+    return [...whichLevel];
+  }
+
+  handleMouseMove(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    this.setState({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  }
+
+  handleClick() {
+    const { x, y } = this.state;
+    this.props.getMouseCoords({ x, y });
+    // only needs to pass canvas and ctx when Im rendering something new???
+    this.props.getCanvasContext({ canvas: this.canvas, ctx: this.ctx });
   }
 
   render() {
@@ -96,6 +97,12 @@ class Canvas extends Component {
     );
   }
 }
+
+Canvas.propTypes = {
+  getMouseCoords: PropTypes.func.isRequired,
+  getCanvasContext: PropTypes.func.isRequired,
+  plantPics: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 function mapStateToProps({ getImages }) {
   return { plantPics: getImages };

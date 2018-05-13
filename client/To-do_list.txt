@@ -3,3 +3,9 @@ actions/getImages.js - make sure all images are loaded (Promise.all?)
 
 canvas/Canvas.js - move the <canvas> element to another file/component
   with forwarding refs: https://reactjs.org/docs/forwarding-refs.html
+
+header/Header.js - Login and Logout is broken
+
+.eslintrc.js - Turned off eslint for import/prefer-default-export to prevent
+  action creators from making that error. Fixing that error will break the
+  action creators, especially getCanvasContext and getMouseCoords

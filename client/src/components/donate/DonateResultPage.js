@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-class DonatePage extends Component {
+class DonateResultPage extends Component {
   renderCharities() {
     const { getDonation } = this.props;
     const charities = [];
     const keys = Object.keys(getDonation);
-    for (let key of keys) {
-      const name = getDonation[key].name;
-      const value = getDonation[key].value;
+    // for (const key of keys) {
+    keys.forEach(key => {
+      const { name } = getDonation[key];
+      const { value } = getDonation[key];
       if (name !== 'Tip' && name !== 'Total Value') {
         charities.push(
           <div key={name}>
@@ -20,7 +22,7 @@ class DonatePage extends Component {
           <div key={name}>Thank you for tipping us ${value}!</div>
         );
       }
-    }
+    });
     return charities;
   }
 
@@ -44,8 +46,12 @@ class DonatePage extends Component {
   }
 }
 
+DonateResultPage.propTypes = {
+  getDonation: PropTypes.PropTypes.objectOf(PropTypes.object).isRequired
+};
+
 function mapStateToProps({ getDonation }) {
   return { getDonation };
 }
 
-export default connect(mapStateToProps)(DonatePage);
+export default connect(mapStateToProps)(DonateResultPage);

@@ -1,9 +1,10 @@
-//render the images for Canvas
-//this is needed to make it work on Chrome :(
-//render the image tags and put onto the page as invisible
+// render the images for Canvas
+// this is needed to make it work on Chrome :(
+// render the image tags and put onto the page as invisible
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+// import * as actions from '../../actions';
+import * as actions from '../../actions/';
 
 import {
   PLANT_1,

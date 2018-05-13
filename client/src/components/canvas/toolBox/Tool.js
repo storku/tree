@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../../../actions';
 
 class Tool extends Component {
@@ -27,5 +28,10 @@ class Tool extends Component {
     );
   }
 }
+
+Tool.propTypes = {
+  alt: PropTypes.string.isRequired,
+  activateTools: PropTypes.func.isRequired
+};
 
 export default connect(null, actions)(Tool);

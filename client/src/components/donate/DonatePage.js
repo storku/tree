@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import * as actions from '../../actions';
+import { withRouter } from 'react-router-dom'; // required to use this.props.history.push
 import { Form, Button } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom'; //required to use this.props.history.push
+import * as actions from '../../actions';
 
 const wrapperStyle = { width: 400, margin: 50 };
 
@@ -14,7 +15,7 @@ class DonatePage extends Component {
 
     this.state = {
       donationValue: 0,
-      total: 100,
+      // total: 100,
       charityOneValue: 55,
       charityTwoValue: 44,
       tipValue: 1
@@ -29,7 +30,7 @@ class DonatePage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleDonationValue(value, event) {
+  handleDonationValue(value) {
     this.setState({
       donationValue: value
     });
@@ -114,7 +115,7 @@ class DonatePage extends Component {
     }
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     const {
       donationValue,
       charityOneValue,
@@ -197,6 +198,16 @@ class DonatePage extends Component {
     );
   }
 }
+
+DonatePage.propTypes = {
+  getDonation: PropTypes.PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    length: PropTypes.number,
+    action: PropTypes.string,
+    location: PropTypes.object,
+    push: PropTypes.func
+  }).isRequired
+};
 
 function mapStateToProps() {
   return {};
