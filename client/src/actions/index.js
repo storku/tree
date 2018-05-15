@@ -19,3 +19,6 @@ export * from './getMouseCoords';
 
 // activate tools
 export * from './activateTools';
+
+// get the authenticated user (Oauth)
+export * from './fetchAuthUser';

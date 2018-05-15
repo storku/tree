@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 // connect helper allows the App component to access the redux store
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../actions'; // import all the action creators
 
 import './App.css';
@@ -18,7 +19,9 @@ import SearchPage from './search/SearchPage';
 
 class App extends Component {
   // in order to call the action creator, hook it up with connect first
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchAuthUser();
+  }
 
   render() {
     // exact is equivalent to exact={true}, makes the path match exactly
@@ -38,6 +41,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  fetchAuthUser: PropTypes.func.isRequired
+};
 
 // use connect to allow App to access Action Creators
 // the 2nd parameter for connect is mapDispatchToProps

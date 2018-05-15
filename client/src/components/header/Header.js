@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom'; // get the Link tag
 import MenuLoggedIn from './MenuLoggedIn';
 import MenuLoggedOut from './MenuLoggedOut';
@@ -9,10 +9,10 @@ import MenuLoggedOut from './MenuLoggedOut';
 class Header extends Component {
   // renders content depending on rather the user is logged in or not
   renderContent() {
-    switch (this.props.auth) {
+    switch (this.props.authUser) {
       // when the login status is still pending return nothing
       case null:
-        return;
+        return null;
       // when the user is not logged in, show them a link to login
       case false:
         return <MenuLoggedOut />;
@@ -29,9 +29,17 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  authUser: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
+};
+
+Header.defaultProps = {
+  authUser: null
+};
+
 // assign state.auth to props.auth, {auth} equals state.auth
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ authUser }) {
+  return { authUser };
 }
 
 export default connect(mapStateToProps)(Header);
