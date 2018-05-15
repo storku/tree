@@ -23,6 +23,7 @@ class Tool extends Component {
           src={this.props.src}
           alt={this.props.alt}
           onClick={this.handleChooseTool}
+          role="presentation"
         />
       </td>
     );
@@ -30,8 +31,9 @@ class Tool extends Component {
 }
 
 Tool.propTypes = {
+  activateTools: PropTypes.func.isRequired,
   alt: PropTypes.string.isRequired,
-  activateTools: PropTypes.func.isRequired
+  src: PropTypes.string.isRequired
 };
 
 export default connect(null, actions)(Tool);

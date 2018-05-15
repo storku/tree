@@ -36,6 +36,7 @@ module.exports = app => {
   //check the current user object from the id from the cookie
   //use this route handler to decide if the user is signed in or not
   app.get('/api/current_user', (req, res) => {
+    console.log(req);
     //if it response back with the user model then the user is logged in
     //if it response back with undefined or null then the user is not logged in
     res.send(req.user);
